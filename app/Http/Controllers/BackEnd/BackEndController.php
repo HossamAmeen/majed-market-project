@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\BackEnd;
-
+use Illuminate\Support\Facades\Response;
 use App\Http\Controllers\Controller;
 use Carbon;
+use Faker\Provider\Image as ProviderImage;
 use File;
 use Illuminate\Database\Eloquent\Model;
 use Image;
@@ -134,7 +135,7 @@ class BackEndController extends Controller
         $name = str_replace(':', '_', $name);
         // $destinationPath = public_path('/' . $this->pluralModelName().'/');
         $destinationPath = public_path();
-      
+
         $file->move($destinationPath, $name);
         return $this->pluralModelName() . '/' . $name;
     }

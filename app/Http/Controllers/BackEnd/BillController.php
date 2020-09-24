@@ -1,17 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\BackEnd;
+
+use App\Bill as AppBill;
+use Illuminate\Http\Request;
+use App\Models\Bill;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-use Illuminate\Http\Request;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use App\Http\Controllers\Controller;
-use Image;
-
-class UserController extends BackEndController
+class BillController extends BackEndController
 {
-    public function __construct(User $model)
+    public function __construct(Bill $model)
     {
         parent::__construct($model);
     }
@@ -20,8 +20,9 @@ class UserController extends BackEndController
     //    return $request->all();
 
         $requestArray = $request->all();
-        if(isset($requestArray['password']) )
-        $requestArray['password'] =  Hash::make($requestArray['password']);
+
+       /* if(isset($requestArray['password']) )
+        $requestArray['password'] =  Hash::make($requestArray['password']);*/
         // if(isset($requestArray['image']) )
         // {
         //     $fileName = $this->uploadImage($request );
@@ -41,23 +42,23 @@ class UserController extends BackEndController
 
         $row = $this->model->FindOrFail($id);
         $requestArray = $request->all();
-        if(isset($requestArray['password']) && $requestArray['password'] != ""){
+
+       /* if(isset($requestArray['password']) && $requestArray['password'] != ""){
             $requestArray['password'] =  Hash::make($requestArray['password']);
         }else{
             unset($requestArray['password']);
-        }
+        }*/
         // if(isset($requestArray['image']) )
         // {
         //     $fileName = $this->uploadImage($request );
         //     $requestArray['image'] =  $fileName;
         // }
 
-        $requestArray['user_id'] = Auth::user()->id;
+     //   $requestArray['user_id'] = Auth::user()->id;
         $row->update($requestArray);
 
 
         session()->flash('action', 'تم التحديث بنجاح');
         return redirect()->route($this->getClassNameFromModel().'.index');
     }
-
 }

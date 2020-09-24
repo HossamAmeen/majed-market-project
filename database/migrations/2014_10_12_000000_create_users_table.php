@@ -9,6 +9,7 @@ class CreateUsersTable extends Migration
 
     public function up()
     {
+        if(!Schema::hasTable('categories')){
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('user_name');
@@ -32,6 +33,7 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+    }
     }
 
     /**

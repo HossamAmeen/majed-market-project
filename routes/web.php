@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 
 Route::prefix('admin')->group(function(){
@@ -10,12 +11,16 @@ Route::prefix('admin')->group(function(){
     // Route::post('login', 'BackEnd\UserController@login');
     Route::middleware('auth')->namespace('BackEnd')->group(function () {
 
-        
+
 
         Route::get('/', 'ConfigrationController@index');
         Route::resource('configrations', 'ConfigrationController');
         Route::resource('users', 'UserController');
-        
+        Route::resource('products', 'ProductController');
+        Route::resource('orders', 'OrderController');
+        Route::resource('bills', 'BillController');
+
+
     });
 });
 
