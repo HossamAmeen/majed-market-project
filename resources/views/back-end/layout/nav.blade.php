@@ -1,10 +1,12 @@
+
+
 <nav class="navigation">
   <div class="container-fluid">
       <!--Logo text start-->
       <div class="header-logo">
         <a href="#" title="">
-                <h1>{{$briefs->title}}</h1>
-            </a>
+            <!--<h1> $briefs->title}}</h1>-->
+        </a>
         </div>
       <!--Logo text End-->
       <div class="top-navigation">
@@ -26,7 +28,6 @@
                               <input type="search" placeholder="what you want to see ?">
                           </form>
                       </div>
-
                   </li>
               </ul>
           </div> --}}
@@ -41,7 +42,7 @@
                   </a>
               </li> --}}
               <li>
-                  
+
                   <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -58,3 +59,4 @@
       </div>
   </div>
 </nav>
+

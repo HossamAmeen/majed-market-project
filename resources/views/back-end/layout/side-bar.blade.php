@@ -43,16 +43,16 @@
 
         <li>
             <a id="products"href="{{route('products.index')}}" class="{{is_active('products')}}">
-                <i class="fa fa-group"></i><span>المنتجات</span>
+                <i class="fas fa-tshirt	"></i><span>المنتجات</span>
             </a>
         </li>
         <li>
-            <a id="products"href="{{route('orders.index')}}" class="{{is_active('orders')}}">
+            <a id="orders"href="{{route('orders.index')}}" class="{{is_active('orders')}}">
                 <i class="fa fa-group"></i><span>الطلبات</span>
             </a>
         </li>
         <li>
-            <a id="products"href="{{route('bills.index')}}" class="{{is_active('bills')}}">
+            <a id="bills" href="{{route('bills.index')}}" class="{{is_active('bills')}}">
                 <i class="fa fa-group"></i><span>الفواتير</span>
             </a>
         </li>
