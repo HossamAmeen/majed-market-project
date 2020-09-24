@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\BackEnd;
-
 use App\Http\Controllers\Controller;
-use Carbon;
-use File;
+use Illuminate\Support\Facades\Response;
+use Faker\Provider\Image as ProviderImage;
+use File,Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Image;
 
 class BackEndController extends Controller
 {

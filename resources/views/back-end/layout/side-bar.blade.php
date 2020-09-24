@@ -40,7 +40,23 @@
                 <i class="fa fa-group"></i><span>المستخدمين</span>
             </a>
         </li>
-        @endif
+
+        <li>
+            <a id="products"href="{{route('products.index')}}" class="{{is_active('products')}}">
+                <i class="fas fa-tshirt	"></i><span>المنتجات</span>
+            </a>
+        </li>
+        <li>
+            <a id="orders"href="{{route('orders.index')}}" class="{{is_active('orders')}}">
+                <i class="fa fa-group"></i><span>الطلبات</span>
+            </a>
+        </li>
+        <li>
+            <a id="bills" href="{{route('bills.index')}}" class="{{is_active('bills')}}">
+                <i class="fa fa-group"></i><span>الفواتير</span>
+            </a>
+        </li>
+         @endif
         {{-- <li>
             <a href="{{route('users.edit' , ['id' => Auth::user()->id])}}" class="{{edit_profle_is_active('users')}}">
                 <i class="fas fa-edit"></i><span>تعديل بيانات الحساب</span>

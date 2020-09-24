@@ -1,7 +1,6 @@
 <?php
 
 
-
 Route::prefix('admin')->group(function(){
     Auth::routes();
 
@@ -15,7 +14,11 @@ Route::prefix('admin')->group(function(){
         Route::get('/', 'ConfigrationController@index');
         Route::resource('configrations', 'ConfigrationController');
         Route::resource('users', 'UserController');
-        
+        Route::resource('products', 'ProductController');
+        Route::resource('orders', 'OrderController');
+        Route::resource('bills', 'BillController');
+
+
     });
 });
 
