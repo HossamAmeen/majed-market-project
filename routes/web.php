@@ -33,6 +33,6 @@ Route::prefix('admin')->group(function(){
 Route::get('/', function ()
 {
     
-    return redirect()->route('admin.users');
+    return redirect()->route('users.index');
     
 });
