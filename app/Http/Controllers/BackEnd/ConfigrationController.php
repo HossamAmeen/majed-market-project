@@ -20,10 +20,8 @@ class ConfigrationController extends BackEndController
 
     public function index()
     {
-        //return redirect()->route("configrations.edit", ['id' => 1]);
-
-
-
+           
+        return redirect()->route("configrations.edit", ['id' => 1]);
     }
     public function update(Request $request, $id)
     {

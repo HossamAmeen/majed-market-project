@@ -28,26 +28,32 @@
     <!--Left navigation start-->
  <!--Left navigation start-->
     <ul class="mainNav">
+        @if( Auth::user()->role == 1 || Auth::user()->role == 2 )
         <li >
             <a href="{{route('configrations.edit' , ['id' => '1'])}}" class="{{is_active('configrations')}}">
                     <i class="fas fa-edit"></i><span>تعديل بيانات الموقع</span>
             </a>
         </li>
-
+        @endif
+        <li >
+            <a href="{{route('edit-account')}}" id="edit-account">
+                    <i class="fas fa-edit"></i><span>تعديل بيانات الحساب</span>
+            </a>
+        </li>
         @if( Auth::user()->role == 1 )
         <li>
-            <a id="users"href="{{route('users.index')}}" class="{{is_active('users')}}">
+            <a id="users" href="{{route('users.index')}}" class="{{is_active('users')}}">
                 <i class="fa fa-group"></i><span>المستخدمين</span>
             </a>
         </li>
-
+        @endif
         <li>
-            <a id="products"href="{{route('products.index')}}" class="{{is_active('products')}}">
+            <a id="products" href="{{route('products.index')}}" class="{{is_active('products')}}">
                 <i class="fas fa-tshirt	"></i><span>المنتجات</span>
             </a>
         </li>
         <li>
-            <a id="orders"href="{{route('orders.index')}}" class="{{is_active('orders')}}">
+            <a id="orders" href="{{route('orders.index')}}" class="{{is_active('orders')}}">
                 <i class="fas fa-shopping-cart"></i><span>الطلبات</span>
 
             </a>
@@ -58,7 +64,7 @@
 
             </a>
         </li>
-         @endif
+         
         {{-- <li>
             <a href="{{route('users.edit' , ['id' => Auth::user()->id])}}" class="{{edit_profle_is_active('users')}}">
                 <i class="fas fa-edit"></i><span>تعديل بيانات الحساب</span>

@@ -70,4 +70,5 @@ $pageTitle = " تعديل بيانات المنتج " . $row->name ;
 <!-- Demo Ck Editor Script For Layout Start-->
 <script src="{{asset('panel/assets/js/pages/editor.js')}}"></script>
 <!-- Demo Ck Editor Script For Layout ENd-->
+
 @endpush

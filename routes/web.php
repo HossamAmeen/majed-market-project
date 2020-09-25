@@ -21,6 +21,7 @@ Route::prefix('admin')->group(function(){
 
         Route::resource('configrations', 'ConfigrationController');
         Route::resource('users', 'UserController');
+        Route::any('edit-account', 'UserController@editAccount')->name('edit-account');
         Route::resource('products', 'ProductController');
         Route::resource('orders', 'OrderController');
         Route::resource('bills', 'BillController');
@@ -29,3 +30,9 @@ Route::prefix('admin')->group(function(){
     });
 });
 
+Route::get('/', function ()
+{
+    
+    return redirect()->route('users');
+    
+});

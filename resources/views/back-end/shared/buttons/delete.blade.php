@@ -1,3 +1,4 @@
+@if( Auth::user()->role == 1 )
 <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
     {{ csrf_field() }}
     {{ method_field('delete') }}
@@ -14,3 +15,4 @@
     <button type="submit" rel="tooltip" title=""  onclick="check()" class="btn btn-xs btn-danger"><i
         class="fa fa-minus"></i></button>
 </form>
+@endif

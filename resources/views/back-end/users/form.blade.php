@@ -41,7 +41,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">كلمة السر</label>
     <div class="col-lg-10">
-        <input type="password" name="{{ $input }}" class="form-control" required>
+        <input type="password" name="{{ $input }}" class="form-control"  @iF(!isset($row)) required @endif>
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label"> تاكيد كلمة السر</label>
     <div class="col-lg-10">
-        <input type="password" name="{{ $input }}" class="form-control" required>
+        <input type="password" name="{{ $input }}" class="form-control"  @iF(!isset($row)) required @endif>
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -61,7 +61,9 @@
         @enderror
     </div>
 </div>
-@if(Auth::user()->role == 1 )
+
+@if(isset($row))
+@if( Auth::user()->id != $row->id  && Auth::user()->id < $row->id )
 @php $input = "role"; @endphp
 <div class="form-group">
     <label class="col-md-2 col-sm-2 col-xs-12 control-label">الصلاحيه</label>
@@ -94,6 +96,44 @@
     @enderror
 </div>
 @endif
+@else   
+{{-- create  --}}
+@php $input = "role"; @endphp
+<div class="form-group">
+    <label class="col-md-2 col-sm-2 col-xs-12 control-label">الصلاحيه</label>
+
+    <div class="col-md-5 col-sm-5 col-xs-12 ls-group-input">
+        <div class="radio">
+            <label class="radio">
+                <input type="radio" name="{{ $input }}" id="optionsRadios1" value="2" @if ( isset($row)) @if($row->role
+                == 2 ) checked @endif
+                @else
+                checked
+                @endif >
+                مسؤول
+            </label>
+        </div>
+        <div class="radio">
+            <label class="radio">
+                <input type="radio" name="{{ $input }}" id="optionsRadios2" value="3" @if ( isset($row)) @if($row->role
+                == 3 ) checked @endif
+                @endif
+                >
+                موظف
+            </label>
+        </div>
+    </div>
+    @error($input)
+    <span class="invalid-feedback" role="alert">
+        <strong>{{ $message }}</strong>
+    </span>
+    @enderror
+</div>
+
+@endif
+
+
+{{-- 
 @php $input = "image"; @endphp
 <div class="form-group">
     <label class="col-md-2 control-label">الصورة</label>
@@ -106,4 +146,4 @@
     </span>
     @enderror
     <span style="margin-right: 15%">يفضل رفع الصوره 400 * 400 </span>
-</div>
+</div> --}}

@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/news';
+    protected $redirectTo = '/admin/edit-account';
 
     /**
      * Create a new controller instance.
@@ -64,10 +64,7 @@ class LoginController extends Controller
 
         if ( ! User::where('user_name', $request->user_name )->where('password', bcrypt($request->password))->first() ) {
             return redirect()->back()
-                ->withInput(
-                    $request->all()
-                    
-                    )
+                ->withInput($request->all())
                 ->withErrors([
                     'password' => Lang::get('auth.password'),
                 ]);

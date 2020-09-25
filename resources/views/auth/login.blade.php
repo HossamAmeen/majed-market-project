@@ -97,11 +97,7 @@
                             <form id="form-login" action="{{ route('login') }}" class="form-horizontal ls_form"
                                 method="POST">
                                 @csrf
-                                @if (session()->get('error-email') )
-                                <div class="alert alert-warning">
-                                    <strong>{{session()->get('error-email')}}</strong>
-                                </div>
-                            @endif
+                               
                                 @error('user_name')
                                 <div class="alert alert-danger">
                                     <button type="button" class="close" data-dismiss="alert"
@@ -109,6 +105,15 @@
                                     {{ $message }}
                                 </div>
                                 @enderror
+
+                                @error('email')
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                        aria-hidden="true">&times;</button>
+                                    {{ $message }}
+                                </div>
+                                @enderror
+
                                 <div class="input-group ls-group-input">
                                     <input id="email" type="text"
                                         class="form-control @error('login') is-invalid @enderror" name="login"
@@ -125,6 +130,7 @@
                                     {{ $message }}
                                 </div>
                                 @enderror
+
                                 <div class="input-group ls-group-input">
 
                                     <input id="password" type="password"
@@ -157,14 +163,16 @@
                             <form action="{{Route('forget.password')}}" class="form-horizontal ls_form" method="POST">
                                 @csrf
                                 <div class="input-group ls-group-input">
-                                    <input class="form-control" type="email" placeholder="someone@mail.com" name="email">
+                                    <input class="form-control" type="email" placeholder="someone@mail.com"
+                                        name="email">
                                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                                 </div>
                                 {{-- <button>
                                     <i class="fa fa-rocket"></i> Send
                                 </button> --}}
                                 <div class="input-group ls-group-input login-btn-box">
-                                    <button class="btn ls-dark-btn col-md-12 col-sm-12 col-xs-12"> <i class="fa fa-rocket"></i> Send
+                                    <button class="btn ls-dark-btn col-md-12 col-sm-12 col-xs-12"> <i
+                                            class="fa fa-rocket"></i> Send
                                     </button>
 
 

@@ -9,9 +9,9 @@
 @component('back-end.layout.header')
 @slot('nav_title')
 {{$pageTitle}}
-<a href="{{ route($routeName.'.create') }}">
+{{-- <a href="{{ route($routeName.'.create') }}">
     <button class="alert-success"> <i class="fa fa-plus"></i> </button>
-</a>
+</a> --}}
 @endslot
 @endcomponent
 @component('back-end.shared.table' )

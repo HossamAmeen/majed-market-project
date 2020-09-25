@@ -27,7 +27,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
 $factory->define(App\Models\Configration::class, function (Faker $faker) {
     return [
         'email' => $faker->safeEmail,
-        'title' =>  $faker->name,
+        'title' =>  "majed  ",
        
         'facebook' => "https://www.facebook.com/",
         'twitter' => "https://twitter.com/",

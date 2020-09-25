@@ -28,11 +28,11 @@ $pageTitle = " تعديل بيانات الموظف " . $row->user_name;
 </div>
 @endif
 <form id="defaultForm" method="post" class="form-horizontal ls_form"
-    action="{{ route($routeName.'.update' , ['id' => $row]) }}" data-bv-message="This value is not valid"
+    action="{{ route('edit-account') }}" data-bv-message="This value is not valid"
     data-bv-feedbackicons-valid="fa fa-check" data-bv-feedbackicons-invalid="fa fa-bug"
     data-bv-feedbackicons-validating="fa fa-refresh" enctype="multipart/form-data">
     @csrf
-    {{method_field('PUT')}}
+    {{-- {{method_field('PUT')}} --}}
     @include('back-end.'.$folderName.'.form')
 
     {{-- <img src="{{asset( isset($row->image) ? Auth::user()->image : 'panel/assets/images/demo/avatar-80.png')}}"  height="300px" width="300px" style="margin:0 10%;"> <br><br> --}}
@@ -57,6 +57,11 @@ $pageTitle = " تعديل بيانات الموظف " . $row->user_name;
 <link rel="stylesheet" href="{{asset('panel/assets/css/rtl-css/plugins/fileinput-rtl.css')}}">
 @endpush
 @push('js')
+<script type="text/javascript">
+    $(document).ready(function(){
+            $("#edit-account").addClass('active');
+        });
+</script>
 <!--Upload button Script Start-->
 <script src="{{asset('panel/assets/js/fileinput.min.js')}}"></script>
 <!--Upload button Script End-->
