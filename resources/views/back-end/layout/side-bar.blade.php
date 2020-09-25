@@ -48,12 +48,14 @@
         </li>
         <li>
             <a id="orders"href="{{route('orders.index')}}" class="{{is_active('orders')}}">
-                <i class="fa fa-group"></i><span>الطلبات</span>
+                <i class="fas fa-shopping-cart"></i><span>الطلبات</span>
+
             </a>
         </li>
         <li>
             <a id="bills" href="{{route('bills.index')}}" class="{{is_active('bills')}}">
-                <i class="fa fa-group"></i><span>الفواتير</span>
+                <i class="fas fa-envelope-open-text"></i><span>الفواتير</span>
+
             </a>
         </li>
          @endif
@@ -62,7 +64,7 @@
                 <i class="fas fa-edit"></i><span>تعديل بيانات الحساب</span>
             </a>
         </li> --}}
-       
+
 
         <li >
             <a class="dropdown-item" href="{{ route('logout') }}"

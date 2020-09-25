@@ -27,8 +27,8 @@
             <th>الاسم</th>
             <th>سعر الشراء</th>
             <th>سعر البيع</th>
-            <th>السعر الكلى</th>
             <th>الكمية</th>
+            <th>السعر الكلى</th>
             <th>الكود</th>
             <th>الخصم</th>
 
@@ -43,8 +43,8 @@
             <td>{{$item->name}}</td>
             <td>{{$item->purchasing_price}}</td>
             <td>{{$item->selling_price}}</td>
-            <td>{{$item->total_price}}</td>
             <td>{{$item->quantity}}</td>
+            <td>{{$item->total_price}}</td>
             <td>{{$item->code}}</td>
             <td>{{$item->discount}}</td>
             <td>

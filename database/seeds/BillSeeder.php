@@ -11,7 +11,7 @@ class BillSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Bill::class,100)->create();
+        //factory(App\Models\Bill::class,100)->create();
 
     }
 }

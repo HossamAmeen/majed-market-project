@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\BackEnd;
-
+use App\Models\User;
 use App\Models\Configration;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use App\Models\Order;
+use Illuminate\Support\Facades\Response;
+use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 class ConfigrationController extends BackEndController
 {
     public function __construct(Configration $model)
@@ -14,7 +20,10 @@ class ConfigrationController extends BackEndController
 
     public function index()
     {
-        return redirect()->route("configrations.edit", ['id' => 1]);
+        //return redirect()->route("configrations.edit", ['id' => 1]);
+
+
+
     }
     public function update(Request $request, $id)
     {
@@ -78,4 +87,49 @@ class ConfigrationController extends BackEndController
         }
         return redirect()->route('login');
     }
+
+
+    public function getOrder()
+    {
+         $x= Order::whereDay('created_at', now()->day)->get();
+         return ($x);
+
+    }
+
+   public function allOrder()
+   {
+        $results=count(Order::orderBy('id', 'DESC')->get());
+        return $results;
+    }
+    public function monthOrder()
+    {
+        $data= Order::select('id', 'price','quantity', 'created_at')
+        ->get()
+        ->groupBy(function($val) {
+        return Carbon::parse($val->created_at)->format('m');
+           });
+           return $data;
+
+ /*$user_list = DB::table('orders')
+            ->select('id', 'price','quantity', 'created_at')
+            ->orderBy('created_at')
+            ->groupBy(DB::raw(MONTH('created_at')))
+            ->get();*/
+     }
+
+     public function yearOrder()
+     {
+         $data= Order::select('id', 'price','quantity', 'created_at')
+         ->get()
+         ->groupBy(function($val) {
+         return Carbon::parse($val->created_at)->format('y');
+            });
+            return $data;
+
+  /*$user_list = DB::table('orders')
+             ->select('id', 'price','quantity', 'created_at')
+             ->orderBy('created_at')
+             ->groupBy(DB::raw(MONTH('created_at')))
+             ->get();*/
+      }
 }

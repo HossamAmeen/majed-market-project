@@ -17,7 +17,7 @@
     <label class="col-lg-2 control-label"> سعر الشراء</label>
     <div class="col-lg-10">
         <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-            required style="width: 420px; height: 40px" id="purchasing_price">
+            required style="width: 420px; height: 40px" id="purchasing_price" onkeyup="myFunction()">
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -44,7 +44,7 @@
     <label class="col-lg-2 control-label">الكمية</label>
     <div class="col-lg-10">
         <input type="quantity" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-            required style="width: 420px; height: 40px" id="quantity">
+            required style="width: 420px; height: 40px" id="quantity" onkeyup="myFunction()">
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -58,7 +58,7 @@
 
     <div class="col-lg-10">
         <input type="text" name="{{ $input }}" class="form-control"
-            required style="width: 420px; height: 40px" readonly id="total_price" >
+            required style="width: 420px; height: 40px"  id="total_price" readonly >
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -71,7 +71,7 @@
     <label class="col-lg-2 control-label"> الكود </label>
     <div class="col-lg-10">
         <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-            required style="width: 420px; height: 40px">
+            required style="width: 420px; height: 40px" readonly>
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -96,16 +96,19 @@
 
 
 <script>
-    function total() {
+    function myFunction() {
   var quantity = parseInt(document.getElementById('quantity').value);
 
   var purchasing_price = parseInt(document.getElementById('purchasing_price').value);
 
   var total = purchasing_price * quantity;
 
-  document.getElementById('total_price').innerHTML = total;
+var getValue = document.getElementById('total_price');
+getValue.value = total;
 
 }
+
+
 </script>
 
 
