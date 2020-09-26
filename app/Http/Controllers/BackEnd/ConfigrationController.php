@@ -20,9 +20,10 @@ class ConfigrationController extends BackEndController
 
     public function index()
     {
-
+        
         return redirect()->route("configrations.edit", ['id' => 1]);
     }
+
     public function update(Request $request, $id)
     {
 
@@ -68,6 +69,7 @@ class ConfigrationController extends BackEndController
         }
 
     }
+
     public function paswordreset(Request $request, $id, $token)
     {
         if ($request->isMethod('post')) {
@@ -85,18 +87,35 @@ class ConfigrationController extends BackEndController
         }
         return redirect()->route('login');
     }
+
+    public function append($row)
+    {
+        $dayOrders= Order::whereYear('date', now()->year)->whereMonth('date', now()->month)->whereDay('date', now()->day)->get();
+        
+        $monthOrders= Order::whereYear('date', now()->year)->whereMonth('date', now()->month)->get();
+
+        $yearOrders=Order::whereYear('date', now()->year)->get();
+
+        $data['dayOrders']= count( $dayOrders) ; 
+        $data['dayOrdersMoney']= $dayOrders->sum('price') ;
+
+        $data['monthOrders']=count( $monthOrders);
+        $data['monthOrdersMoney']= $monthOrders->sum('price');
+
+        $data['yearOrders']=count($yearOrders);
+        $data['yearOrdersMoney']=$yearOrders->sum('price');
+
+        return $data;
+    }
     public function getAllOrder()
     {
+        $dayOrder= count(Order::whereDay('created_at', now()->day)->get());
 
+        $monthOrder= count(Order::whereMonth('created_at', now()->month)->get());
 
-          $dayOrder= count(Order::whereDay('created_at', now()->day)->get());
-
-          $monthOrder= count(Order::whereMonth('created_at', now()->month)->get());
-
-          $yearOrder=count(Order::whereYear('created_at', now()->year)->get());
-
-          //return
+        $yearOrder=count(Order::whereYear('created_at', now()->year)->get());
     }
+
     public function getAllPrice()
     {
 
@@ -119,7 +138,7 @@ class ConfigrationController extends BackEndController
    {
         $results=count(Order::orderBy('id', 'DESC')->get());
         return $results;
-    }
+   }
 
 
 }

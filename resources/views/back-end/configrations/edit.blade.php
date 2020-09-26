@@ -232,6 +232,86 @@
                     </div>
                 {{-- </div> --}}
             </div>
+            <div class="col-md-3">
+                <div class="current-status-widget">
+                    <ul>
+                        <li>
+                            <div class="status-box">
+                                <div class="status-box-icon label-light-green white">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                            <div class="status-box-content">
+                                <h5 id="sale-view">{{$dayOrders}}</h5>
+                                <p class="lightGreen"> عدد طلبات اليوم</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="status-box">
+                                <div class="status-box-icon label-light-green white">
+                                    <i class="fa fa-dollar"></i>
+                                </div>
+                            </div>
+                            <div class="status-box-content">
+                                <h5 id="sale-view">{{$dayOrdersMoney}}</h5>
+                                <p class="lightGreen"> فلوس طلبات اليوم</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="status-box">
+                                <div class="status-box-icon label-light-green white">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                            <div class="status-box-content">
+                                <h5 id="sale-view">{{$monthOrders}}</h5>
+                                <p class="lightGreen">طلبات هذا الشهر</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="status-box">
+                                <div class="status-box-icon label-light-green white">
+                                    <i class="fa fa-dollar"></i>
+                                </div>
+                            </div>
+                            <div class="status-box-content">
+                                <h5 id="sale-view">{{$monthOrdersMoney}}</h5>
+                                <p class="lightGreen"> فلو طلبات هذا الشهر</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="status-box">
+                                <div class="status-box-icon label-light-green white">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </div>
+                            </div>
+                            <div class="status-box-content">
+                                <h5 id="sale-view">{{$yearOrders}}</h5>
+                                <p class="lightGreen">طلبات هذا السنه</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                        <li>
+                            <div class="status-box">
+                                <div class="status-box-icon label-light-green white">
+                                    <i class="fa fa-dollar"></i>
+                                </div>
+                            </div>
+                            <div class="status-box-content">
+                                <h5 id="sale-view">{{$yearOrdersMoney}}</h5>
+                                <p class="lightGreen"> فلوس طلبات هذا السنه</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
+                       
+                    </ul>
+                </div>
+        
+            </div>
     </div>
 
     {{-- @component('back-end.shared.edit' , ['pageTitle' => $pageTitle , 'pageDes' => $pageDes])
