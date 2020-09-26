@@ -20,7 +20,7 @@ class ConfigrationController extends BackEndController
 
     public function index()
     {
-           
+
         return redirect()->route("configrations.edit", ['id' => 1]);
     }
     public function update(Request $request, $id)
@@ -85,12 +85,33 @@ class ConfigrationController extends BackEndController
         }
         return redirect()->route('login');
     }
-
-
-    public function getOrder()
+    public function getAllOrder()
     {
-         $x= Order::whereDay('created_at', now()->day)->get();
-         return ($x);
+
+
+          $dayOrder= count(Order::whereDay('created_at', now()->day)->get());
+
+          $monthOrder= count(Order::whereMonth('created_at', now()->month)->get());
+
+          $yearOrder=count(Order::whereYear('created_at', now()->year)->get());
+
+          //return
+    }
+    public function getAllPrice()
+    {
+
+        $dayPrice=DB::table('orders')
+        ->select(DB::raw('sum(price) AS total'))->whereDay('created_at', now()->day)->get();
+
+        $monthPrice=DB::table('orders')
+        ->select(DB::raw('sum(price) AS total'))->whereMonth('created_at', now()->month)->get();
+
+        $yearPrice=DB::table('orders')
+        ->select(DB::raw('sum(price) AS total'))->whereYear('created_at', now()->year)->get();
+
+
+        //return $x;
+
 
     }
 
@@ -99,35 +120,6 @@ class ConfigrationController extends BackEndController
         $results=count(Order::orderBy('id', 'DESC')->get());
         return $results;
     }
-    public function monthOrder()
-    {
-        $data= Order::select('id', 'price','quantity', 'created_at')
-        ->get()
-        ->groupBy(function($val) {
-        return Carbon::parse($val->created_at)->format('m');
-           });
-           return $data;
 
- /*$user_list = DB::table('orders')
-            ->select('id', 'price','quantity', 'created_at')
-            ->orderBy('created_at')
-            ->groupBy(DB::raw(MONTH('created_at')))
-            ->get();*/
-     }
 
-     public function yearOrder()
-     {
-         $data= Order::select('id', 'price','quantity', 'created_at')
-         ->get()
-         ->groupBy(function($val) {
-         return Carbon::parse($val->created_at)->format('y');
-            });
-            return $data;
-
-  /*$user_list = DB::table('orders')
-             ->select('id', 'price','quantity', 'created_at')
-             ->orderBy('created_at')
-             ->groupBy(DB::raw(MONTH('created_at')))
-             ->get();*/
-      }
 }

@@ -14,11 +14,9 @@ Route::prefix('admin')->group(function(){
 
 
         Route::get('/', 'ConfigrationController@index');
-        Route::get('/x', 'ConfigrationController@getOrder');
-        Route::get('/a', 'ConfigrationController@allOrder');
-        Route::get('/m', 'ConfigrationController@monthOrder');
-        Route::get('/y', 'ConfigrationController@yearOrder');
 
+        Route::get('/allorders', 'ConfigrationController@getAllOrder');
+        Route::get('/sumprice', 'ConfigrationController@getAllPrice');
         Route::resource('configrations', 'ConfigrationController');
         Route::resource('users', 'UserController');
         Route::any('edit-account', 'UserController@editAccount')->name('edit-account');
@@ -32,7 +30,7 @@ Route::prefix('admin')->group(function(){
 
 Route::get('/', function ()
 {
-    
+
     return redirect()->route('users.index');
-    
+
 });
