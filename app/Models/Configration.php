@@ -10,3 +10,5 @@ class Configration extends Model
                              'descriptionPoint' , 'phone' ,  'phone2' ,'video','video2','youtube',
                              'facebook' , 'video' , 'twitter' ,'instagram' ];
 }
+
+

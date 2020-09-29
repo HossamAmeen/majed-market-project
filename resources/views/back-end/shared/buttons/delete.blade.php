@@ -1,3 +1,4 @@
+
 @if( Auth::user()->role == 1 )
 <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
     {{ csrf_field() }}
@@ -6,9 +7,13 @@
         data-original-title="Edit
         {{ $sModuleName }}">
         <i class="fa fa-pencil-square-o"></i>
-
     </a>
-    {{-- <button type="submit" rel="tooltip" title="" class="btn btn-danger" onclick="check()"
+
+  {{-- <button  rel="tooltip" title="" class="btn btn-xs btn-info"  onclick="printContent($item->id)"
+        data-original-title="Print {{ $sModuleName }}">
+        <i class="fa fa-minus-square" ></i>
+    </button>
+     <button type="submit" rel="tooltip" title="" class="btn btn-danger" onclick="check()"
         data-original-title="Remove {{ $sModuleName }}">
         <i class="fa fa-minus-square"  aria-hidden="true"></i>
     </button> --}}

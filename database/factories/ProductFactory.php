@@ -17,7 +17,7 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
            'total_price'=>$faker->randomFloat(2, 10, 100),
             'quantity'=> $faker->numberBetween(50, 500),
             'code'=>$faker->unique()->numerify('ABC###'),
-           'discount'=> $faker->randomDigit,
+           'discount'=>$faker->randomFloat(2, 0, 1),
            'user_id'=>User::all()->random()->id,
           'category_id'=> Category::all()->random()->id,
 

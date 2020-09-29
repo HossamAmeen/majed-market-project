@@ -15,11 +15,6 @@ class CreateBillsProductsTable extends Migration
     {
         Schema::create('bills__products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('product_price');
-            $table->integer('selling_price');
-
-            $table->integer('discount');
-            $table->integer('quantity');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('bill_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate("cascade");

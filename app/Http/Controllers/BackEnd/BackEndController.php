@@ -31,7 +31,7 @@ class BackEndController extends Controller
         $sModuleName = $this->getModelName();
         $routeName = $this->getClassNameFromModel();
         $pageTitle = "Control " . $moduleName;
-        $pageDes = "Here you can add / edit / delete " . $moduleName;
+        $pageDes = "Here you can add / edit / delete / print " . $moduleName;
         // return $rows;
         // return Auth::user()->role;
         return view('back-end.' . $routeName . '.index', compact(
@@ -133,7 +133,7 @@ class BackEndController extends Controller
         $name = str_replace(':', '_', $name);
         // $destinationPath = public_path('/' . $this->pluralModelName().'/');
         $destinationPath = public_path();
-      
+
         $file->move($destinationPath, $name);
         return $this->pluralModelName() . '/' . $name;
     }

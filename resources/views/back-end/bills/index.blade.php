@@ -1,4 +1,5 @@
 @extends('back-end.layout.app')
+
 @php $row_num = 1; $pageTitle = "عرض الفواتير" @endphp
 @section('title')
 {{$pageTitle}}
@@ -20,25 +21,29 @@
     <strong>{{session()->get('action')}}</strong>
 </div>
 @endif
+
 <table class="table table-bordered table-striped table-bottomless" id="ls-editable-table">
     <thead>
         <tr>
             <th>#</th>
             <th>اسم المشتري</th>
             <th>رقم الموبايل</th>
-
+            <th></th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($rows as $item)
-        <tr>
+        <tr id="row">
             <td> {{$row_num++}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->phone}}</td>
             <td>
-
                 @include('back-end.shared.buttons.delete')
+            </td>
+            <td>
+            {{--<button id="print" onclick="printContent('row');" >Print</button> --}}
+            <button><a href="{{ url('/bill/'.$item->id)}}" class="btnPrint" id="print" style="text-decoration: none">Print</a></button>
 
             </td>
         </tr>
@@ -55,4 +60,17 @@
             $("#{{$routeName}}").addClass('active');
         });
 </script>
+
+<script type="text/javascript">
+    function printContent(element){
+           window.print(); window.close();
+            }
+  </script>
 @endpush
+
+{{--Route::get('/bill', function ()
+{
+
+    return view('back-end.bills.bill');
+
+})->name('bill');--}}

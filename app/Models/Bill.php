@@ -11,8 +11,16 @@ class Bill extends Model
 
     use SoftDeletes;
     protected $dates=['deleted_at'];
+    protected $fillable = [
+        'name' , 'phone','is_selling', 'user_id','product_id'
+    ];
     public function product()
     {
     	return $this->belongsToMany(Product::class);
+    }
+
+
+    public function billedProducts(){
+        return $this->hasMany(Bills_Product::class,'bill_id')->with('product');
     }
 }

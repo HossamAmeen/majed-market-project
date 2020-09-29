@@ -11,6 +11,11 @@ class Order extends Model
     use SoftDeletes;
     protected $dates=['deleted_at'];
 
+    protected $fillable = [
+        'price' , 'quantity','date', 'status' ,
+        'discount', 'user_id','product_id'
+    ];
+
     public function user()
     {
     	return $this->belongsTo(User::class);

@@ -11,8 +11,6 @@ Route::prefix('admin')->group(function(){
     // Route::post('login', 'BackEnd\UserController@login');
     Route::middleware('auth')->namespace('BackEnd')->group(function () {
 
-
-
         Route::get('/', 'ConfigrationController@index');
 
         Route::get('/allorders', 'ConfigrationController@getAllOrder');
@@ -25,12 +23,27 @@ Route::prefix('admin')->group(function(){
         Route::resource('bills', 'BillController');
 
 
+       // Route::get('/print','PrintController@index')->name('admin/print');
+
+Route::get('/printre', function ()
+{
+
+    return view('bills');
+
+})->name('print');
+
+
     });
 });
-
 Route::get('/', function ()
 {
 
     return redirect()->route('users.index');
 
 });
+Route::get('bill/{id}', 'PrintController@index')->name('bill');
+
+
+
+
+

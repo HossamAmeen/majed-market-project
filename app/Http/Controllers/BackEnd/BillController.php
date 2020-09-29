@@ -61,4 +61,11 @@ class BillController extends BackEndController
         session()->flash('action', 'تم التحديث بنجاح');
         return redirect()->route($this->getClassNameFromModel().'.index');
     }
+
+    public function bill()
+    {
+        $data['rows']=Bill::all();
+        return view('back-end.bills.bill');
+    }
+
 }
