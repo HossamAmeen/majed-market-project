@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderProductsTable extends Migration
+class CreateBillsProductsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,18 @@ class CreateOrderProductsTable extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('order__products', function (Blueprint $table) {
+    { 
+        Schema::create('bills_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('order_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate("cascade");
-            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade')->onUpdate("cascade");
+            $table->integer('product_price');
+            $table->integer('selling_price');
 
+            $table->integer('discount');
+            $table->integer('quantity');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('bill_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate("cascade");
+            $table->foreign('bill_id')->references('id')->on('bills')->onDelete('cascade')->onUpdate("cascade");
             $table->timestamps();
             $table->softDeletes();
 
@@ -33,6 +37,6 @@ class CreateOrderProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order__products');
+        Schema::dropIfExists('bills_products');
     }
 }

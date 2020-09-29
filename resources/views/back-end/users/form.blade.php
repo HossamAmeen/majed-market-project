@@ -41,7 +41,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">كلمة السر</label>
     <div class="col-lg-10">
-        <input type="password" name="{{ $input }}" class="form-control"  @iF(!isset($row)) required @endif>
+        <input type="password" name="{{ $input }}" class="form-control" id="password"  @iF(!isset($row)) required @endif>
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label"> تاكيد كلمة السر</label>
     <div class="col-lg-10">
-        <input type="password" name="{{ $input }}" class="form-control"  @iF(!isset($row)) required @endif>
+        <input type="password" name="{{ $input }}" class="form-control" id="password_confirmation"  @iF(!isset($row)) required @endif>
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -133,8 +133,8 @@
 @endif
 
 
-{{-- 
-@php $input = "image"; @endphp
+
+{{-- @php $input = "image"; @endphp
 <div class="form-group">
     <label class="col-md-2 control-label">الصورة</label>
     <div class="col-md-10 ls-group-input">

@@ -15,6 +15,7 @@ class PrintController extends Controller
     {
 
        $data['rows']=Bill::with('billedProducts')->where('id',$id)->get();
+       
         return view('back-end.bills.bill')->with($data);
 
     }

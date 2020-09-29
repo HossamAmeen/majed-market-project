@@ -42,19 +42,7 @@ class BillController extends BackEndController
 
         $row = $this->model->FindOrFail($id);
         $requestArray = $request->all();
-
-       /* if(isset($requestArray['password']) && $requestArray['password'] != ""){
-            $requestArray['password'] =  Hash::make($requestArray['password']);
-        }else{
-            unset($requestArray['password']);
-        }*/
-        // if(isset($requestArray['image']) )
-        // {
-        //     $fileName = $this->uploadImage($request );
-        //     $requestArray['image'] =  $fileName;
-        // }
-
-     //   $requestArray['user_id'] = Auth::user()->id;
+        $requestArray['user_id'] = Auth::user()->id;
         $row->update($requestArray);
 
 
@@ -66,6 +54,15 @@ class BillController extends BackEndController
     {
         $data['rows']=Bill::all();
         return view('back-end.bills.bill');
+    }
+
+    public function printBill($id)
+    {
+        // return $id;
+        // return "<td>test</td>";
+        $data['rows']=Bill::with('billedProducts')->where('id',$id)->get();
+       
+        return view('back-end.bills.bill')->with($data);
     }
 
 }

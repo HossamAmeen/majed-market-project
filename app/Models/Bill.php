@@ -21,6 +21,6 @@ class Bill extends Model
 
 
     public function billedProducts(){
-        return $this->hasMany(Bills_Product::class,'bill_id')->with('product');
+        return $this->hasMany(BillsProduct::class,'bill_id')->with('product');
     }
 }
