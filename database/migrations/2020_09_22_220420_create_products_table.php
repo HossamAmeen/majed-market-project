@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
                 $table->double('selling_price')->nullable();
                 $table->double('total_price')->nullable();
                 $table->integer('quantity')->nullable();
-                $table->string('code')->nullable();
+                $table->unsignedBigInteger('code')->nullable();
                 $table->double('discount')->nullable();
                 $table->unsignedBigInteger('user_id')->nullable();
                 $table->unsignedBigInteger('category_id')->nullable();

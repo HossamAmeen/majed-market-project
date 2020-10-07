@@ -20,6 +20,18 @@
                     data-bv-feedbackicons-validating="fa fa-refresh"
                     enctype="multipart/form-data"
                     >
+                    @if (session()->get('action') )
+                    <div class="alert alert-success">
+                        <strong>{{session()->get('action')}}</strong>
+                    </div>
+                    @endif
+                    @error('errorProduct')
+                    <div class="alert alert-danger">
+                        <button type="button" class="close" data-dismiss="alert"
+                            aria-hidden="true">&times;</button>
+                        {{ $message }}
+                    </div>
+                    @enderror
                 @csrf
                 @include('back-end.'.$folderName.'.form')
 

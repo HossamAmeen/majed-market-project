@@ -16,6 +16,7 @@
         "simplesoftwareio/simple-qrcode": "^3.0",
         "twbs/bootstrap": "4.0.0-alpha.6",
         "yajra/laravel-datatables-oracle": "^9.11"
+
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -24,6 +25,7 @@
         "mockery/mockery": "^1.0",
         "nunomaduro/collision": "^3.0",
         "phpunit/phpunit": "^7.5"
+
     },
     "config": {
         "optimize-autoloader": true,
@@ -32,7 +34,9 @@
     },
     "extra": {
         "laravel": {
-            "dont-discover": []
+            "dont-discover": [
+                "laravel/dusk"
+            ]
         }
     },
     "autoload": {
@@ -51,7 +55,7 @@
         "psr-4": {
             "Tests\\": "tests/"
         }
-       
+
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

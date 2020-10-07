@@ -13,7 +13,7 @@ $factory->define(App\Models\Bill::class, function (Faker $faker) {
         'name' => $faker->name,
         'phone' => $faker->phoneNumber,
         'user_id'=>App\Models\User::all()->random()->id,
-        'product_id'=>App\Models\Product::all()->random()->id,
+       
 
     ];
 });

@@ -18,7 +18,10 @@ class Bill extends Model
     {
     	return $this->belongsToMany(Product::class);
     }
-
+    public function orders()
+    {
+    	return $this->hasMany(Order::class);
+    }
 
     public function billedProducts(){
         return $this->hasMany(BillsProduct::class,'bill_id')->with('product');

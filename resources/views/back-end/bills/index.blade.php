@@ -10,9 +10,9 @@
 @component('back-end.layout.header')
 @slot('nav_title')
 {{$pageTitle}}
-{{-- <a href="{{ route($routeName.'.create') }}">
+<a href="{{ route($routeName.'.create') }}">
 <button class="alert-success"> <i class="fa fa-plus"></i> </button>
-</a> --}}
+</a>
 @endslot
 @endcomponent
 @component('back-end.shared.table' )
@@ -28,8 +28,10 @@
             <th>#</th>
             <th>اسم المشتري</th>
             <th>رقم الموبايل</th>
+            <th>فلوس الفاتورة</th>
+            <th>منتجات</th>
+            <th>تاريخ الصرف</th>
             <th></th>
-            {{-- <th></th> --}}
         </tr>
     </thead>
     <tbody>
@@ -38,6 +40,11 @@
             <td> {{$row_num++}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->phone}}</td>
+            <td>{{$item->orders->sum('price')}}</td>
+            <td>@foreach ($item->orders as $order)
+                {{$order->product->name}} <br>
+            @endforeach</td>
+             <td>{{$item->created_at->format('Y-m-d')}}</td>
             <td>
                 <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
                     {{ csrf_field() }}

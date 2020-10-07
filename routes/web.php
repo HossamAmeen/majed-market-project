@@ -25,25 +25,35 @@ Route::prefix('admin')->group(function(){
 
        // Route::get('/print','PrintController@index')->name('admin/print');
 
-        Route::get('/printre', function ()
-        {
+        // Route::get('/printre', function ()
+        // {
 
-            return view('bills');
+        //     return view('bills');
 
-        })->name('print');
+        // })->name('print');
 
 
     });
 });
 
-Route::get('/', function ()
-{
+// Route::get('/', function ()
+// {
 
-    return redirect()->route('users.index');
+//     return redirect()->route('users.index');
 
-});
+// });
 
-Route::get('bill/{id}', 'PrintController@index')->name('bill');
+// Route::get('bill/{id}', 'PrintController@index')->name('bill');
+
+// Route::get('qr-code-g', function () {
+
+//     \QrCode::size(500)
+//             ->format('png')
+//             ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+
+//   return view('qrcode');
+
+// });
 
 
 

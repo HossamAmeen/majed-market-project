@@ -5,10 +5,14 @@
 @endsection
 
 @section('content')
-
+<a class="btn  btn-info" href="{{$routeName.'?day=' . date('Y-m-d')}}">طلبتا اليوم</a>
+<a class="btn  btn-info" href="{{$routeName.'?month=' . date('m')}}">طلبتا الشهر</a>
+<a class="btn  btn-info" href="{{$routeName.'?year=' . date('Y')}}">طلبتا السنة</a>
+<br><br>
 @component('back-end.layout.header')
 @slot('nav_title')
 {{$pageTitle}}
+
 {{-- <a href="{{ route($routeName.'.create') }}">
     <button class="alert-success"> <i class="fa fa-plus"></i> </button>
 </a> --}}
@@ -24,32 +28,46 @@
     <thead>
         <tr>
             <th>#</th>
+            <th>المنتج</th>
+            <th>كود المنتج</th>
             <th>السعر</th>
+            <th>الخصم</th>
             <th>الكمية</th>
             <th>التاريخ</th>
-            <th>الخصم</th>
-            <th></th>
+            {{-- <th></th> --}}
         </tr>
     </thead>
     <tbody>
+        @php
+            $totalCost = 0 ;
+        @endphp
         @foreach ($rows as $item)
         <tr>
             <td> {{$row_num++}}</td>
+            <td>{{$item->product->name ?? " "}}</td>
+            <td>{{$item->product->code ?? " "}}</td>
             <td>{{$item->price}}</td>
+            <td>{{$item->discount}}</td>
             <td>{{$item->quantity}}</td>
             <td>{{$item->date}}</td>
-            <td>{{$item->discount}}</td>
-
-            <td>
-
-                @include('back-end.shared.buttons.delete')
-
-
-            </td>
+            {{-- <td>
+            </td> --}}
+            @php
+                $totalCost += $item->price * $item->quantity  - $item->discount; 
+            @endphp
         </tr>
         @endforeach
     </tbody>
 </table>
+<div style="text-align: center ; margin: 5% 20%">
+    <p>   اجمالي الفلوس : {{$totalCost}}</p>
+    <p>   اجمالي الفلوس : {{$totalCost}}</p>
+    {{-- <p>اجمالي الطلبات : {{$row_num - 1 }}</p>    --}}
+</div>
+ 
+ 
+        
+  
 @endcomponent
 @endsection
 

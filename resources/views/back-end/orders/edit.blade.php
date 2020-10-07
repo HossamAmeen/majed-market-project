@@ -2,7 +2,7 @@
 @php
 
 $pageTitle = " تعديل بيانات الطلب رقم " . $row->id;
-
+@endphp
 @section('title')
 {{ $pageTitle }}
 @endsection

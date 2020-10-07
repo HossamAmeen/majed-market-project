@@ -232,6 +232,7 @@
                     </div>
                 {{-- </div> --}}
             </div>
+          
             <div class="col-md-3">
                 <div class="current-status-widget">
                     <ul>
@@ -279,7 +280,7 @@
                             </div>
                             <div class="status-box-content">
                                 <h5 id="sale-view">{{$monthOrdersMoney}}</h5>
-                                <p class="lightGreen"> فلو طلبات هذا الشهر</p>
+                                <p class="lightGreen"> فلوس طلبات هذا الشهر</p>
                             </div>
                             <div class="clearfix"></div>
                         </li>
@@ -307,11 +308,25 @@
                             </div>
                             <div class="clearfix"></div>
                         </li>
+                        <li>
+                            <div class="status-box">
+                                <div class="status-box-icon label-light-green white">
+                                    <i class="fa fa-tshirt"></i>
+                                </div>
+                            </div>
+                            <div class="status-box-content">
+                                <h5 id="sale-view">{{$expiredProduct}}</h5>
+                                <p class="lightGreen"> عدد المنتجات خلصانه</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </li>
                        
                     </ul>
                 </div>
         
             </div>
+            
+        
     </div>
 
     {{-- @component('back-end.shared.edit' , ['pageTitle' => $pageTitle , 'pageDes' => $pageDes])

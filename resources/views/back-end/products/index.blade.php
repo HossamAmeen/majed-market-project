@@ -5,7 +5,8 @@
 @endsection
 
 @section('content')
-
+<a class="btn  btn-info" href="{{$routeName.'?quantity=' . 5}}"> المنتجات المقتربة من النفاذ</a>
+<br><br>
 @component('back-end.layout.header')
 @slot('nav_title')
 {{$pageTitle}}
@@ -28,9 +29,10 @@
             <th>سعر الشراء</th>
             <th>سعر البيع</th>
             <th>الكمية</th>
-            <th>السعر الكلى</th>
+            <th>سعر الشراء الكلى</th>
+            <th>سعر البيع الكلى</th>
             <th>الكود</th>
-            <th>الخصم</th>
+            {{-- <th>الخصم</th> --}}
 
 
             <th></th>
@@ -38,15 +40,16 @@
     </thead>
     <tbody>
         @foreach ($rows as $item)
-        <tr>
+        <tr @if($item->quantity < 3) style="color: red" @endif>
             <td> {{$row_num++}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->purchasing_price}}</td>
             <td>{{$item->selling_price}}</td>
             <td>{{$item->quantity}}</td>
-            <td>{{$item->total_price}}</td>
+            <td>{{$item->purchasing_price * $item->quantity}}</td>
+            <td>{{$item->selling_price * $item->quantity}}</td>
             <td>{{$item->code}}</td>
-            <td>{{$item->discount}}</td>
+            {{-- <td>{{$item->discount}}</td> --}}
             <td>
 
                 @include('back-end.shared.buttons.delete')
