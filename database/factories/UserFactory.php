@@ -28,7 +28,7 @@ $factory->define(App\Models\Configration::class, function (Faker $faker) {
     return [
         'email' => $faker->safeEmail,
         'title' =>  "majed  ",
-       
+
         'facebook' => "https://www.facebook.com/",
         'twitter' => "https://twitter.com/",
         'instagram' => "https://www.instagram.com/", //

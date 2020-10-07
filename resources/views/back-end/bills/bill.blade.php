@@ -37,7 +37,9 @@
             <div class="ticket-content" id="design-1">
                     <h3> مجدى
                       <br>
-                      <span class="date">{{now()->toDateTimeString('Y-m-d')}}</span>
+                    {{--  <span class="date">{{  now()->toDateTimeString('Y-m-d') }}</span>--}}
+                    <span class="date">{{ date('Y-m-d H:i:s') }}</span>
+
                     </h3>
                     <h4 class="name"><span>اسم العميل:</span>
                         <span> {{$item->name}}</span>

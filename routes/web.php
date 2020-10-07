@@ -45,15 +45,10 @@ Route::get('/', function ()
 
 Route::get('bill/{id}', 'PrintController@index')->name('bill');
 
-Route::get('qr-code-g', function () {
 
-    \QrCode::size(500)
-            ->format('png')
-            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
 
-  return view('qrcode');
 
-});
+
 
 
 

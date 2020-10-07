@@ -3,7 +3,7 @@
     <label class="col-lg-2 control-label">اسم المستخدم</label>
     <div class="col-lg-10">
         <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-            required>
+            required style="width: 420px; height: 40px">
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -16,7 +16,7 @@
     <label class="col-lg-2 control-label">البريد</label>
     <div class="col-lg-10">
         <input type="email" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-            required>
+            required style="width: 420px; height: 40px">
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -29,7 +29,7 @@
     <label class="col-lg-2 control-label">الاسم بالكامل</label>
     <div class="col-lg-10">
         <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-            required>
+            required style="width: 420px; height: 40px">
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -41,7 +41,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">كلمة السر</label>
     <div class="col-lg-10">
-        <input type="password" name="{{ $input }}" class="form-control" id="password"  @iF(!isset($row)) required @endif>
+        <input type="password" name="{{ $input }}" class="form-control" id="password"  @iF(!isset($row)) required @endif style="width: 420px; height: 40px">
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -53,7 +53,8 @@
 <div class="form-group">
     <label class="col-lg-2 control-label"> تاكيد كلمة السر</label>
     <div class="col-lg-10">
-        <input type="password" name="{{ $input }}" class="form-control" id="password_confirmation"  @iF(!isset($row)) required @endif>
+        <input type="password" name="{{ $input }}" class="form-control"
+        id="password_confirmation"  @iF(!isset($row)) required @endif style="width: 420px; height: 40px">
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -96,7 +97,7 @@
     @enderror
 </div>
 @endif
-@else   
+@else
 {{-- create  --}}
 @php $input = "role"; @endphp
 <div class="form-group">

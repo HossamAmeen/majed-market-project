@@ -10,9 +10,9 @@
 @component('back-end.layout.header')
 @slot('nav_title')
 {{$pageTitle}}
-{{-- <a href="{{ route($routeName.'.create') }}">
+<a href="{{ route($routeName.'.create') }}">
 <button class="alert-success"> <i class="fa fa-plus"></i> </button>
-</a> --}}
+</a>
 @endslot
 @endcomponent
 @component('back-end.shared.table' )
@@ -52,7 +52,7 @@
                     <a href="#" rel="tooltip" title="print" class="btn btn-xs btn-info"
                         onclick="printDiv({{$item->id}})"> <i class="fa fa-print"></i>
                     </a>
-                    {{-- <button  rel="tooltip" title="" id="print"  
+                    {{-- <button  rel="tooltip" title="" id="print"
                     onclick="printDiv({{$item->id}})"
                     class="btn btn-xs btn-danger">
                     <i class="fa fa-print"></i></button> --}}
@@ -81,15 +81,15 @@
             }
 </script> --}}
 <script>
-    function printDiv(id) { 
-        var divContents = document.getElementById("row"+id).innerHTML; 
-        var a = window.open('', '', 'height=500, width=500'); 
-        a.document.write('<html>'); 
-        a.document.write('<body > <h1>Div contents are <br>' + id); 
-        a.document.write(divContents); 
-        a.document.write('</body></html>'); 
-        a.document.close(); 
-        a.print();     
-    } 
+    function printDiv(id) {
+        var divContents = document.getElementById("row"+id).innerHTML;
+        var a = window.open('', '', 'height=500, width=500');
+        a.document.write('<html>');
+        a.document.write('<body > <h1>Div contents are <br>' + id);
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
 </script>
 @endpush
