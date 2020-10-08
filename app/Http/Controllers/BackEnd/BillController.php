@@ -22,20 +22,28 @@ class BillController extends BackEndController
        
 
         if(is_array($request->products)){
+            $bill = $this->model->create($requestArray);
             for($i=0; $i<count($request->products) ; $i++){
                 if($request->products[$i] == null){
-                    continue;
+                    break;
                 }
                 $product = Product::where('code',$request->products[$i])->first();
                 if(!isset($product)){
+                    $bill->delete();
                     return redirect()->back()->withErrors(['errorProduct' => "كود هذا المنتج غير صالح " .$request->products[$i] ])->withInput();
                 }
                 $price = $request->costs[$i] ?? $product->selling_price  ; 
                 $quantity = $request->quantity[$i] ?? 1 ;
                 if($product->quantity < $quantity){
+                    $bill->delete();
                     return redirect()->back()->withErrors(['errorProduct' => "هذا المنتج اقل من الكمية المطلوبة او ناقص" .$product->name ])->withInput();
                 }
-                $bill = $this->model->create($requestArray);
+                else
+                {
+                    $product->quantity -= $quantity ;
+                    $product->save(); 
+                }
+               
                 Order::create([
                     'product_price'=> $product->selling_price,
                     'price'=> $price,
@@ -75,6 +83,12 @@ class BillController extends BackEndController
         return redirect()->route($this->getClassNameFromModel().'.index');
     }
 
+    public function destroy($id)
+    {
+        $this->model->FindOrFail($id)->delete();
+        Order::where('bill_id' , $id)->delete();
+        return redirect()->route($this->getClassNameFromModel() . '.index');
+    }
     public function bill()
     {
         $data['rows']=Bill::all();
@@ -85,9 +99,9 @@ class BillController extends BackEndController
     {
         // return $id;
         // return "<td>test</td>";
-        $data['rows']=Bill::with('billedProducts')->where('id',$id)->get();
+        $bill=Bill::with('orders')->where('id',$id)->first();
        
-        return view('back-end.bills.bill')->with($data);
+        return view('back-end.bills.bill' , compact('bill'));
     }
 
 }

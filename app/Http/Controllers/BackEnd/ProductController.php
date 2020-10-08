@@ -19,7 +19,7 @@ class ProductController extends BackEndController
         $requestArray = $request->all();
         $total =$request->purchasing_price * $request->quantity;
         $requestArray['total_price'] =$total;
-
+        $requestArray['user_id'] = Auth::user()->id;
         $requestArray['code'] =  $this->generateRandomNumber(5);
         while( $this->checkNumber( $requestArray['code'] )  ) {
             $requestArray['code'] =  $this->generateRandomNumber(5);

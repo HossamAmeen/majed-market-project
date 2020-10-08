@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>طبع الفاتورة</title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css.map')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.scss')}}">
-  <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
-  <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-  <script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
-  <script type="text/javascript" src="{{asset('js/jquery.printPage.js')}}"></script>
-   <script type="text/javascript">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
+    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/jquery.printPage.js')}}"></script>
+    <script type="text/javascript">
         $(document).ready(function (){
             // window.print();
         })
@@ -32,19 +33,19 @@
 </head>
 <body style="text-align:center;">
 <center><br><br>
- @foreach ($rows as $item)
+
     <div class="container" id="GFG">
             <div class="ticket-content" id="design-1">
                     <h3> مجدى
                       <br>
-                      <span class="date">{{now()->toDateTimeString('Y-m-d')}}</span>
+                      <span class="date">{{now()}}</span>
                     </h3>
                     <h4 class="name"><span>اسم العميل:</span>
-                        <span> {{$item->name}}</span>
+                        <span> {{$bill->name}}</span>
                     </h4>
 
                     <h4 class="phone"><span>التلفون:</span>
-                        <span>{{$item->phone}}</span></h4>
+                        <span>{{$bill->phone}}</span></h4>
                     <div class="table-header">
                       <p class="description">المنتج</p >
                       <p class="quantity">الكمية</p >
@@ -55,21 +56,21 @@
                         $sum=0;
                         $discount = 0;
                     @endphp
-                    @foreach ($item->billedProducts as $products)
-                    @if($products->product)
+                    @foreach ($bill->orders as $order)
+                   
                     <div class="table-data">
-                      <p class="description">{{$products->product->name}}	</p>
-                      <p class="quantity">{{$products->product->quantity}}</p>
-                      <p class="selling_price">{{$products->product->selling_price}}</p>
-                      <p class="quantity">{{$products->product->discount}}</p>
+                      <p class="description">{{$order->product->name}}	</p>
+                      <p class="quantity">{{$order->quantity}}</p>
+                      <p class="selling_price">{{$order->price}}</p>
+                      <p class="quantity">{{$order->discount}}</p>
                             @php
-                                $sum+= $products->product->quantity * $products->product->selling_price;
+                                $sum+= $order->quantity * $order->price;
                                 // $discountValue = ($products->product->quantity * ($products->product->selling_price * $products->product->discount / 100 ));
                                 // $discount +=(  $discountValue);
-                                $discount += ($sum * $products->product->discount / 100 )
+                                $discount += $order->discount;
                             @endphp
                    </div >
-                    @endif
+                   
                     @endforeach
                  <div class="total-price">
                      <p class="title">اجمالى السعر</p>
@@ -89,7 +90,6 @@
                   </div><br>
 
     </div>
-    @endforeach
 </center>
 </body>
 </html>

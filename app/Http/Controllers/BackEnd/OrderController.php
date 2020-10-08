@@ -58,6 +58,15 @@ class OrderController extends BackEndController
         $rows = $rows->whereYear('date' , date('Y'))->whereMonth('date' ,  request('month'));
         if(request('year') != null)
         $rows = $rows->whereYear('date' , request('year'));
+
+        if(request('dateSearch') != null)
+        {
+            // session('dateSearch' ,request('dateSearch') );
+            session(['dateSearch' => request('dateSearch')]);
+            $rows = $rows->whereDate('date' ,'>=', request('dateSearch'));
+        }
+       
+        
         return $rows;
     }
     

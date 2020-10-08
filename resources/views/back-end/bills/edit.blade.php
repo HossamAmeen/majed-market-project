@@ -31,7 +31,39 @@ $pageTitle = " تعديل بيانات الفاتورة رقم  " . $row->id;
     data-bv-feedbackicons-validating="fa fa-refresh" enctype="multipart/form-data">
     @csrf
     {{method_field('PUT')}}
-    @include('back-end.'.$folderName.'.form')
+    <div class="form-group">
+        @php $input = "name"; @endphp
+        <label class="col-lg-2 control-label">اسم المشتري</label>
+        <div class="col-lg-2">
+            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
+                required>
+            @error($input)
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+        @php $input = "phone"; @endphp
+        <label class="col-lg-2 control-label">رقم الموبايل</label>
+        <div class="col-lg-2">
+            <input type="text"    name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control">
+            @error($input)
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+    </div>
+    
+    <table>
+        <tr>
+            <th>المنتج</th>
+            <th>السعر</th>
+            <th>الكمية</th>
+            <th>الخصم</th>
+            <th></th>
+        </tr>
+    </table>
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
