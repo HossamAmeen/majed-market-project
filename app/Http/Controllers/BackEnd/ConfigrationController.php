@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
-use App\Models\Order;
+use App\Models\{Order,Product};
 use Illuminate\Support\Facades\Response;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
@@ -90,12 +90,12 @@ class ConfigrationController extends BackEndController
 
     public function append($row)
     {
-        $dayOrders= Order::whereYear('date', now()->year)->whereMonth('date', now()->month)->whereDay('date', now()->day)->get();
+        $dayOrders= Order::where('status' , 'sold-out')->whereYear('date', now()->year)->whereMonth('date', now()->month)->whereDay('date', now()->day)->get();
         
-        $monthOrders= Order::whereYear('date', now()->year)->whereMonth('date', now()->month)->get();
+        $monthOrders= Order::where('status' , 'sold-out')->whereYear('date', now()->year)->whereMonth('date', now()->month)->get();
 
-        $yearOrders=Order::whereYear('date', now()->year)->get();
-
+        $yearOrders=Order::where('status' , 'sold-out')->whereYear('date', now()->year)->get();
+        $expiredProduct=Product::where('quantity', 0)->get();
         $data['dayOrders']= count( $dayOrders) ; 
         $data['dayOrdersMoney']= $dayOrders->sum('price') ;
 
@@ -104,7 +104,7 @@ class ConfigrationController extends BackEndController
 
         $data['yearOrders']=count($yearOrders);
         $data['yearOrdersMoney']=$yearOrders->sum('price');
-
+        $data['expiredProduct']=count($expiredProduct);
         return $data;
     }
     public function getAllOrder()

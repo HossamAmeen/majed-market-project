@@ -14,24 +14,16 @@ class ProductController extends BackEndController
     {
         parent::__construct($model);
     }
-    public function setTotal() {
-        $this->total_price = $this->purchasing_price * $this->quantity;
-    }
     public function store(Request $request){
-    //    return $request->all();
 
         $requestArray = $request->all();
         $total =$request->purchasing_price * $request->quantity;
         $requestArray['total_price'] =$total;
-       /* if(isset($requestArray['password']) )
-        $requestArray['password'] =  Hash::make($requestArray['password']);*/
-        // if(isset($requestArray['image']) )
-        // {
-        //     $fileName = $this->uploadImage($request );
-        //     $requestArray['image'] =  $fileName;
-        // }
 
-       // $requestArray['user_id'] = Auth::user()->id;
+        $requestArray['code'] =  $this->generateRandomNumber(5);
+        while( $this->checkNumber( $requestArray['code'] )  ) {
+            $requestArray['code'] =  $this->generateRandomNumber(5);
+        }
         $this->model->create($requestArray);
         session()->flash('action', 'تم الاضافه بنجاح');
 
@@ -46,22 +38,36 @@ class ProductController extends BackEndController
         $requestArray = $request->all();
         $total =$request->purchasing_price * $request->quantity;
         $requestArray['total_price'] =$total;
-       /* if(isset($requestArray['password']) && $requestArray['password'] != ""){
-            $requestArray['password'] =  Hash::make($requestArray['password']);
-        }else{
-            unset($requestArray['password']);
-        }*/
-        // if(isset($requestArray['image']) )
-        // {
-        //     $fileName = $this->uploadImage($request );
-        //     $requestArray['image'] =  $fileName;
-        // }
-
-     //   $requestArray['user_id'] = Auth::user()->id;
+      
+        $requestArray['user_id'] = Auth::user()->id;
         $row->update($requestArray);
 
 
         session()->flash('action', 'تم التحديث بنجاح');
         return redirect()->route($this->getClassNameFromModel().'.index');
+    }
+    function generateRandomNumber($length)
+    {
+        $str = rand(0, 9); // first number (0 not allowed)
+        for ($i = 1; $i < $length; $i++)
+            $str .= rand(0, 9);
+
+        return $str;
+    }
+
+    public function checkNumber($code)
+    {
+        $shippingCard = $this->model->where('code' , $code)->first();
+        if($shippingCard){
+            return true;
+        }
+        else
+        return false;
+    }
+    public function filter($rows)
+    {
+        if(request('quantity'))
+        $rows = $rows->where('quantity' ,'<', request('quantity'));
+        return  $rows;
     }
 }

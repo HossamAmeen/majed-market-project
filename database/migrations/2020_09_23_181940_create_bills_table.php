@@ -18,10 +18,10 @@ class CreateBillsTable extends Migration
             $table->string('name');
             $table->string('phone')->nullable();
             $table->boolean('is_selling')->default(0);
-            $table->unsignedBigInteger('product_id');
+           
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate("cascade");
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate("cascade");
+           
 
             $table->timestamps();
             $table->softDeletes();

@@ -12,23 +12,14 @@
   <script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
   <script type="text/javascript" src="{{asset('js/jquery.printPage.js')}}"></script>
    <script type="text/javascript">
+ /*function Print()
+   {
         $(document).ready(function (){
-            // window.print();
+             window.print();
         })
-    </script>
+   }*/
 
-<script>
-    function printDiv() {
-        var divContents = document.getElementById("GFG").innerHTML;
-        var a = window.open('', '', 'height=500, width=500');
-        a.document.write('<html>');
-        a.document.write('<body > <h1>Div contents are <br>');
-        a.document.write(divContents);
-        a.document.write('</body></html>');
-        a.document.close();
-        a.print();
-    }
-</script>
+    </script>
 </head>
 <body style="text-align:center;">
 <center><br><br>
@@ -37,9 +28,8 @@
             <div class="ticket-content" id="design-1">
                     <h3> مجدى
                       <br>
-                    {{--  <span class="date">{{  now()->toDateTimeString('Y-m-d') }}</span>--}}
-                    <span class="date">{{ date('Y-m-d H:i:s') }}</span>
 
+                   <span class="date">{{  date('Y-m-d H:i:s') }}</span>
                     </h3>
                     <h4 class="name"><span>اسم العميل:</span>
                         <span> {{$item->name}}</span>

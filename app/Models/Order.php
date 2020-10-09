@@ -12,8 +12,8 @@ class Order extends Model
     protected $dates=['deleted_at'];
 
     protected $fillable = [
-        'price' , 'quantity','date', 'status' ,
-        'discount', 'user_id','product_id'
+        'product_price','price' , 'quantity','date', 'status' ,
+        'discount', 'user_id','product_id','bill_id'
     ];
 
     public function user()
@@ -22,6 +22,6 @@ class Order extends Model
     }
     public function product()
     {
-    	return $this->belongsToMany(Product::class);
+    	return $this->belongsTo(Product::class);
     }
 }

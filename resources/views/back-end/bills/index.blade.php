@@ -28,8 +28,10 @@
             <th>#</th>
             <th>اسم المشتري</th>
             <th>رقم الموبايل</th>
+            <th>فلوس الفاتورة</th>
+            <th>منتجات</th>
+            <th>تاريخ الصرف</th>
             <th></th>
-            {{-- <th></th> --}}
         </tr>
     </thead>
     <tbody>
@@ -38,6 +40,11 @@
             <td> {{$row_num++}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->phone}}</td>
+            <td>{{$item->orders->sum('price')}}</td>
+            <td>@foreach ($item->orders as $order)
+                {{$order->product->name}} <br>
+            @endforeach</td>
+             <td>{{$item->created_at->format('Y-m-d')}}</td>
             <td>
                 <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
                     {{ csrf_field() }}
@@ -47,11 +54,18 @@
                     </a>
                     <button type="submit" rel="tooltip" title="" onclick="check()" class="btn btn-xs btn-danger"><i
                             class="fa fa-minus"></i></button>
-                    <button><a href="{{route($routeName.'.print' , ['id' => $item->id])}}" class="btnPrint" id="print"
-                    style="text-decoration: none" target="_blank">Print</a></button>
-                    <a href="#" rel="tooltip" title="print" class="btn btn-xs btn-info"
-                        onclick="printDiv({{$item->id}})"> <i class="fa fa-print"></i>
-                    </a>
+
+                            <button><a href="{{route($routeName.'.print' , ['id' => $item->id])}}" class="btnPrint" id="print"
+                                style="text-decoration: none" target="_blank">Print</a></button>
+
+          {{--<a href="#" rel="tooltip" title="print" class="btn btn-xs btn-info"
+                    onclick="printDiv({{$item->id}})"> <i class="fa fa-print"></i>
+                </a>--}}
+
+         <a href="#" rel="tooltip" title="print" onclick="printPageWithAjax()" class="btn btn-xs btn-info"
+            >
+               <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
+            </a>
                     {{-- <button  rel="tooltip" title="" id="print"
                     onclick="printDiv({{$item->id}})"
                     class="btn btn-xs btn-danger">
@@ -73,13 +87,58 @@
     $(document).ready(function(){
             $("#{{$routeName}}").addClass('active');
         });
+/*
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.onload=function(){ // necessary if the div contain images
+
+mywindow.focus(); // necessary for IE >= 10
+mywindow.print();
+mywindow.close();
+}
+
+}*/
+
+$.ajaxSetup({
+            headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+
+function printPageWithAjax(){
+
+var route= $(event.target).attr("data-route");
+var mywindow = window.open(route, 'PRINT', 'height=600,width=800');
+mywindow.focus(); // necessary for IE >= 10
+mywindow.print();
+}
+/*function printPageWithAjax(){
+
+var route= $(event.target).attr("data-route");
+var mywindow = window.open(route, 'PRINT', 'height=600,width=800');
+
+$.ajax({
+url  : route,
+type : 'GET',
+ data: {},
+dataType: 'html',
+success: function(html) {
+   // mywindow.document.write(data);
+    mywindow.focus();
+    mywindow.print();
+},
+error: function (data) {
+console.log('Error:', data);
+}
+})
+
+}*/
+
+
 </script>
 
 {{-- <script type="text/javascript">
     function printContent(element){
            window.print(); window.close();
             }
-</script> --}}
+</script>
 <script>
     function printDiv(id) {
         var divContents = document.getElementById("row"+id).innerHTML;
@@ -91,5 +150,5 @@
         a.document.close();
         a.print();
     }
-</script>
+</script>--}}
 @endpush

@@ -16,20 +16,26 @@ class CreateOrdersTable extends Migration
         if(!Schema::hasTable('orders')){
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('product_price');
             $table->integer('price');
             $table->integer('quantity');
             $table->date('date');
-            $table->string('status')->default('sold out');
+            $table->string('status')->default('sold-out');
             $table->integer('discount');
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate("cascade");
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade')->onUpdate("cascade");
+            
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('set null')->onUpdate("set null");
+
+            $table->bigInteger('bill_id')->unsigned()->nullable();
+            $table->foreign('bill_id')->references('id')->on('bills')->onDelete('set null');
+
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
 
             $table->timestamps();
             $table->softDeletes();
         });
-    }
+        }
     }
 
     /**
