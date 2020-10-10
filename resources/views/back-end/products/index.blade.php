@@ -65,10 +65,13 @@
             <td>{{$item->user->user_name ?? " "}}</td>
             {{-- <td>{{$item->discount}}</td> --}}
             <td>
-
+                @section('moreButton')
+                <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
+                    <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
+                </a>
+                @endsection
                 @include('back-end.shared.buttons.delete')
-
-
+               
             </td>
         </tr>
         @endforeach

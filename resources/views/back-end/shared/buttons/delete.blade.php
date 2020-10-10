@@ -19,5 +19,6 @@
     </button> --}}
     <button type="submit" rel="tooltip" title=""  onclick="check()" class="btn btn-xs btn-danger"><i
         class="fa fa-minus"></i></button>
+    @yield('moreButton')
 </form>
 @endif

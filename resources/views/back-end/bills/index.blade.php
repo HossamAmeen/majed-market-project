@@ -11,7 +11,7 @@
 @slot('nav_title')
 {{$pageTitle}}
 <a href="{{ route($routeName.'.create') }}">
-<button class="alert-success"> <i class="fa fa-plus"></i> </button>
+    <button class="alert-success"> <i class="fa fa-plus"></i> </button>
 </a>
 @endslot
 @endcomponent
@@ -31,7 +31,7 @@
             <th>منتجات</th>
             <th>فلوس الفاتورة</th>
             <th>خصم الفاتورة</th>
-           
+
             <th>تاريخ الصرف</th>
             <th>المسؤول</th>
             <th></th>
@@ -39,7 +39,7 @@
     </thead>
     <tbody>
         @php
-            $totalCost = 0 ; $totalDiscount = 0 ;
+        $totalCost = 0 ; $totalDiscount = 0 ;
         @endphp
         @foreach ($rows as $item)
         <tr id="row{{$item->id}}">
@@ -49,45 +49,46 @@
             <td>@foreach ($item->orders as $order)
                 {{$order->product_name ?? " "}} ( {{$order->quantity}} ) - {{ $order->price}} جنيها<br>
                 @php
-                    $totalCost +=  ($order->quantity * $order->price); $totalDiscount += $order->discount ;
+                $totalCost += ($order->quantity * $order->price); $totalDiscount += $order->discount ;
                 @endphp
-            @endforeach</td>
+                @endforeach</td>
             <td>{{$totalCost}}</td>
             <td>{{$totalDiscount}}</td>
-           
-             <td>{{$item->created_at->format('Y-m-d')}}</td>
-             <td>{{$item->user->user_name ?? ""}}</td>
+
+            <td>{{$item->created_at->format('Y-m-d')}}</td>
+            <td>{{$item->user->user_name ?? ""}}</td>
             <td width="10%">
                 <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
                     {{-- <a href="{{ route($routeName.'.edit' , ['id' => $item]) }}" rel="tooltip" title=""
-                        class="btn btn-xs btn-info"> <i class="fa fa-pencil-square-o"></i>
+                    class="btn btn-xs btn-info"> <i class="fa fa-pencil-square-o"></i>
                     </a> --}}
                     <button type="submit" rel="tooltip" title="" onclick="check()" class="btn btn-xs btn-danger"><i
                             class="fa fa-minus"></i></button>
 
-                    {{-- <button><a href="{{route($routeName.'.print' , ['id' => $item->id])}}" class="btnPrint" id="print"
+                    {{-- <button><a href="{{route($routeName.'.print' , ['id' => $item->id])}}" class="btnPrint"
+                    id="print"
                     style="text-decoration: none" target="_blank">طباعة</a></button> --}}
                     {{-- <a href="#" rel="tooltip" title="print" class="btn btn-xs btn-info"
                         onclick="printDiv({{$item->id}})"> <i class="fa fa-print"></i>
                     </a> --}}
 
-                     <a href="{{route($routeName.'.print' , ['id' => $item->id])}}" rel="tooltip" title="عرض الفاتورة"
-                         class="btn btn-xs btn-success" 
-                        target="_blank" > <i class="fa fa-eye"></i>
+                    <a href="{{route($routeName.'.print' , ['id' => $item->id])}}" rel="tooltip" title="عرض الفاتورة"
+                        class="btn btn-xs btn-success" target="_blank"> <i class="fa fa-eye"></i>
                     </a>
                     {{-- <button  rel="tooltip" title="" id="print"  
-                            <button><a href="{{route($routeName.'.print' , ['id' => $item->id])}}" class="btnPrint" id="print"
-                                style="text-decoration: none" target="_blank">Print</a></button>
+                            <button><a href="{{route($routeName.'.print' , ['id' => $item->id])}}" class="btnPrint"
+                    id="print"
+                    style="text-decoration: none" target="_blank">Print</a></button>
 
                     {{--<a href="#" rel="tooltip" title="print" class="btn btn-xs btn-info"
                                 onclick="printDiv({{$item->id}})"> <i class="fa fa-print"></i>
-                            </a>--}}
+                    </a>--}}
 
-             <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
-               <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
-            </a>
+                    <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
+                        <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
+                    </a>
                     {{-- <button  rel="tooltip" title="" id="print"
                     onclick="printDiv({{$item->id}})"
                     class="btn btn-xs btn-danger">
