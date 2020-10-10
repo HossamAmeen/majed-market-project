@@ -32,6 +32,7 @@ class BackEndController extends Controller
         $routeName = $this->getClassNameFromModel();
         $pageTitle = "Control " . $moduleName;
         $pageDes = "Here you can add / edit / delete / print " . $moduleName;
+        $append = $this->appendIndex($rows);
         // return $rows;
         // return Auth::user()->role;
         return view('back-end.' . $routeName . '.index', compact(
@@ -41,7 +42,7 @@ class BackEndController extends Controller
             'pageDes',
             'sModuleName',
             'routeName'
-        ));
+        ))->with($append);
     }
 
     public function create()
@@ -167,5 +168,7 @@ class BackEndController extends Controller
     {
         return [];
     }
-
+    protected function appendIndex($rows){
+        return [];
+    }
 }

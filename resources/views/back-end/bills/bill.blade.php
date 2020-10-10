@@ -8,28 +8,19 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css.map')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.scss')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
-    <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('js/jquery.printPage.js')}}"></script>
-    <script type="text/javascript">
+  <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
+  <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
+  <script type="text/javascript" src="{{asset('js/jquery.printPage.js')}}"></script>
+   <script type="text/javascript">
+ /*function Print()
+   {
         $(document).ready(function (){
-            // window.print();
+             window.print();
         })
-    </script>
+   }*/
 
-<script>
-    function printDiv() {
-        var divContents = document.getElementById("GFG").innerHTML;
-        var a = window.open('', '', 'height=500, width=500');
-        a.document.write('<html>');
-        a.document.write('<body > <h1>Div contents are <br>');
-        a.document.write(divContents);
-        a.document.write('</body></html>');
-        a.document.close();
-        a.print();
-    }
-</script>
+    </script>
 </head>
 <body style="text-align:center;">
 <center><br><br>
@@ -59,7 +50,7 @@
                     @foreach ($bill->orders as $order)
                    
                     <div class="table-data">
-                      <p class="description">{{$order->product->name}}	</p>
+                      <p class="description">{{$order->product_name}}	</p>
                       <p class="quantity">{{$order->quantity}}</p>
                       <p class="selling_price">{{$order->price}}</p>
                       <p class="quantity">{{$order->discount}}</p>

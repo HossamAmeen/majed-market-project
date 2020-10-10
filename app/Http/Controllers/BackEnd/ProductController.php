@@ -5,8 +5,8 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Product as AppProduct;
-use Image;
+
+use Image ,DB;
 
 class ProductController extends BackEndController
 {
@@ -54,7 +54,15 @@ class ProductController extends BackEndController
 
         return $str;
     }
-
+    public function appendIndex($rows)
+    {
+        // $products = $this->model->get();  
+        $data['productsCount'] =   count($rows);
+        $data['totalQuantity'] =   $rows->sum('quantity');
+        $data['totalBuyCost'] =   Product::value(DB::raw("SUM(quantity * purchasing_price )"));
+        $data['totalSellCost'] =   Product::value(DB::raw("SUM(quantity * selling_price )")) ; 
+        return $data;
+    }
     public function checkNumber($code)
     {
         $shippingCard = $this->model->where('code' , $code)->first();

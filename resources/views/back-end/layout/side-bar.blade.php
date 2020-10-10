@@ -64,7 +64,12 @@
 
             </a>
         </li>
-         
+        <li>
+            <a id="bills" href="{{route('notes.index')}}" class="{{is_active('notes')}}">
+                <i class="fas fa-pencil-square-o"></i><span>ملحوظات</span>
+
+            </a>
+        </li>
         {{-- <li>
             <a href="{{route('users.edit' , ['id' => Auth::user()->id])}}" class="{{edit_profle_is_active('users')}}">
                 <i class="fas fa-edit"></i><span>تعديل بيانات الحساب</span>

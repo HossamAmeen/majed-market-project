@@ -5,8 +5,20 @@
 @endsection
 
 @section('content')
-<a class="btn  btn-info" href="{{$routeName.'?quantity=' . 5}}"> المنتجات المقتربة من النفاذ</a>
+<a class="btn  btn-danger" href="{{$routeName.'?quantity=' . 5}}"> المنتجات المقتربة من النفاذ</a>
 <br><br>
+<button  class="btn  btn-info">عدد الاصناف :  {{$productsCount}} </button>
+<button  class="btn  btn-info">اجمالي القطع :  {{$totalQuantity}} </button>
+<button  class="btn  btn-info">اجمالي سعر الشراء  : {{$totalBuyCost}}</button>
+<button  class="btn  btn-info">اجمالي سعر البيع  : {{$totalSellCost}} </button>
+<button  class="btn  btn-success">صافي مكسب: {{$totalSellCost - $totalBuyCost}}</button>
+{{-- <p style="float: right">عدد القطع :  {{$productsCount}}</p>
+<p style="margin: 0% 20% ; float: right">اجمالي سعر الشراء  : {{$totalBuyCost}}</p>
+<p style="margin: 0% 20%">اجمالي سعر البيع  : {{$totalSellCost}}</p>
+<h4 style="text-align: center">صافي مكسب: {{$totalSellCost - $totalBuyCost}}</h4> --}}
+<br><br>
+  
+
 @component('back-end.layout.header')
 @slot('nav_title')
 {{$pageTitle}}
@@ -62,6 +74,9 @@
         @endforeach
     </tbody>
 </table>
+<br><br>
+<h2 style="text-align: center">اجمالي عدد القطع : 5     -   اجمالي فلوس : 25 - اجمالي سعر البيع : 35 - صافي المكسب : 10</h2>
+<br><br>
 @endcomponent
 @endsection
 

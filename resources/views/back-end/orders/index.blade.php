@@ -47,12 +47,12 @@
     <tbody>
         @php
             $totalCost = 0 ;
-            
+            $totalQuantity = 0 ;
         @endphp
         @foreach ($rows as $item)
         <tr>
             <td> {{$row_num++}}</td>
-            <td>{{$item->product->name ?? " "}}</td>
+            <td>{{$item->product_name ?? " "}}</td>
             <td>{{$item->product->code ?? " "}}</td>
             <td>{{$item->price}}</td>
             <td>{{$item->discount}}</td>
@@ -64,6 +64,7 @@
             </td> --}}
             @php
                 $totalCost += $item->price * $item->quantity  - $item->discount; 
+                $totalQuantity += $item->quantity;
             @endphp
         </tr>
         @endforeach
@@ -71,8 +72,9 @@
 </table>
 <div style="text-align: center ; margin: 5% 20%">
     <p>   اجمالي الفلوس : {{$totalCost}}</p>
-    {{-- <p>   اجمالي الفلوس : {{$totalCost}}</p> --}}
-    <p>اجمالي الطلبات : {{$row_num - 1 }}</p>   
+    <p>   اجمالي الكمية : {{$totalQuantity}}</p>
+    <p>اجمالي الاصناف : {{$row_num - 1 }}</p>   
+
 </div>
  
  

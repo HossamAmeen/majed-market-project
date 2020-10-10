@@ -12,7 +12,7 @@ class Order extends Model
     protected $dates=['deleted_at'];
 
     protected $fillable = [
-        'product_price','price' , 'quantity','date', 'status' ,
+        'product_price','price' , 'quantity','date', 'status' ,'product_name',
         'discount', 'user_id','product_id','bill_id'
     ];
 

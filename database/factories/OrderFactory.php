@@ -16,6 +16,7 @@ $factory->define(App\Models\Order::class, function (Faker $faker) {
         'quantity'=> $faker->randomFloat(2, 1, 10),
         'date'=>$faker->date($format = 'Y-m-d', $max = 'now'),
         'status'=>$faker->randomElement($array),
+        'product_name'=>$faker->name,
         'discount'=> $faker->randomDigit,
         'bill_id'=>App\Models\Bill::all()->random()->id,
         'user_id'=>App\Models\User::all()->random()->id,

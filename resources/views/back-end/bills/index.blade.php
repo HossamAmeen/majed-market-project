@@ -28,25 +28,33 @@
             <th>#</th>
             <th>اسم المشتري</th>
             <th>رقم الموبايل</th>
+            <th>منتجات</th>
             <th>فلوس الفاتورة</th>
             <th>خصم الفاتورة</th>
-            <th>منتجات</th>
+           
             <th>تاريخ الصرف</th>
             <th>المسؤول</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
+        @php
+            $totalCost = 0 ; $totalDiscount = 0 ;
+        @endphp
         @foreach ($rows as $item)
         <tr id="row{{$item->id}}">
             <td> {{$row_num++}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->phone}}</td>
-            <td>{{$item->orders->sum('price')}}</td>
-            <td>{{$item->orders->sum('discount')}}</td>
             <td>@foreach ($item->orders as $order)
-                {{$order->product->name}} ( {{$order->quantity}} ) <br>
+                {{$order->product_name ?? " "}} ( {{$order->quantity}} ) - {{ $order->price}} جنيها<br>
+                @php
+                    $totalCost +=  ($order->quantity * $order->price); $totalDiscount += $order->discount ;
+                @endphp
             @endforeach</td>
+            <td>{{$totalCost}}</td>
+            <td>{{$totalDiscount}}</td>
+           
              <td>{{$item->created_at->format('Y-m-d')}}</td>
              <td>{{$item->user->user_name ?? ""}}</td>
             <td width="10%">
@@ -65,11 +73,22 @@
                         onclick="printDiv({{$item->id}})"> <i class="fa fa-print"></i>
                     </a> --}}
 
-                     <a href="{{route($routeName.'.print' , ['id' => $item->id])}}" rel="tooltip" title="print"
-                         class="btn btn-xs btn-info" 
-                        target="_blank" > <i class="fa fa-print"></i>
+                     <a href="{{route($routeName.'.print' , ['id' => $item->id])}}" rel="tooltip" title="عرض الفاتورة"
+                         class="btn btn-xs btn-success" 
+                        target="_blank" > <i class="fa fa-eye"></i>
                     </a>
                     {{-- <button  rel="tooltip" title="" id="print"  
+                            <button><a href="{{route($routeName.'.print' , ['id' => $item->id])}}" class="btnPrint" id="print"
+                                style="text-decoration: none" target="_blank">Print</a></button>
+
+                    {{--<a href="#" rel="tooltip" title="print" class="btn btn-xs btn-info"
+                                onclick="printDiv({{$item->id}})"> <i class="fa fa-print"></i>
+                            </a>--}}
+
+             <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
+               <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
+            </a>
+                    {{-- <button  rel="tooltip" title="" id="print"
                     onclick="printDiv({{$item->id}})"
                     class="btn btn-xs btn-danger">
                     <i class="fa fa-print"></i></button> --}}
@@ -90,23 +109,69 @@
     $(document).ready(function(){
             $("#{{$routeName}}").addClass('active');
         });
+/*
+    mywindow.document.close(); // necessary for IE >= 10
+    mywindow.onload=function(){ // necessary if the div contain images
+
+mywindow.focus(); // necessary for IE >= 10
+mywindow.print();
+mywindow.close();
+}
+
+}*/
+
+$.ajaxSetup({
+            headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
+
+function printPageWithAjax(){
+
+var route= $(event.target).attr("data-route");
+
+var mywindow = window.open(route, 'PRINT', 'height=600,width=800');
+mywindow.focus(); // necessary for IE >= 10
+mywindow.print();
+}
+/*function printPageWithAjax(){
+
+var route= $(event.target).attr("data-route");
+var mywindow = window.open(route, 'PRINT', 'height=600,width=800');
+
+$.ajax({
+url  : route,
+type : 'GET',
+ data: {},
+dataType: 'html',
+success: function(html) {
+   // mywindow.document.write(data);
+    mywindow.focus();
+    mywindow.print();
+},
+error: function (data) {
+console.log('Error:', data);
+}
+})
+
+}*/
+
+
 </script>
 
 {{-- <script type="text/javascript">
     function printContent(element){
            window.print(); window.close();
             }
-</script> --}}
-<script>
-    function printDiv(id) { 
-        var divContents = document.getElementById("row"+id).innerHTML; 
-        var a = window.open('', '', 'height=500, width=500'); 
-        a.document.write('<html>'); 
-        a.document.write('<body > <h1>Div contents are <br>' + id); 
-        a.document.write(divContents); 
-        a.document.write('</body></html>'); 
-        a.document.close(); 
-        a.print();     
-    } 
 </script>
+<script>
+    function printDiv(id) {
+        var divContents = document.getElementById("row"+id).innerHTML;
+        var a = window.open('', '', 'height=500, width=500');
+        a.document.write('<html>');
+        a.document.write('<body > <h1>Div contents are <br>' + id);
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
+</script>--}}
 @endpush

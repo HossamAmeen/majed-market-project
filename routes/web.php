@@ -21,9 +21,9 @@ Route::prefix('admin')->group(function(){
         Route::resource('products', 'ProductController');
         Route::resource('orders', 'OrderController');
         Route::resource('bills', 'BillController');
+        Route::resource('notes', 'NoteController');
         Route::any('print-bill/{id}', 'BillController@printBill')->name('bills.print');
 
-       // Route::get('/print','PrintController@index')->name('admin/print');
 
         // Route::get('/printre', function ()
         // {
@@ -35,6 +35,7 @@ Route::prefix('admin')->group(function(){
 
     });
 });
+       // Route::get('/print/{id}','PrintController@index')->name('print');
 
 // Route::get('/', function ()
 // {

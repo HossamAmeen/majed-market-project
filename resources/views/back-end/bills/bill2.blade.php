@@ -59,7 +59,7 @@
                     @foreach ($bill->orders as $order)
                    
                     <div class="table-data">
-                      <p class="description">{{$order->product->name}}	</p>
+                      <p class="description">{{$order->product_name}}	</p>
                       <p class="quantity">{{$order->quantity}}</p>
                       <p class="selling_price">{{$order->price}}</p>
                       <p class="quantity">{{$order->discount}}</p>

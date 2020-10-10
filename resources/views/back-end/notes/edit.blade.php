@@ -1,7 +1,10 @@
 @extends('back-end.layout.app')
 @php
-
-$pageTitle = " تعديل بيانات المنتج " . $row->name ;
+if($row->role == 1 )
+$pageTitle = " تعديل بيانات المسؤول " . $row->user_name ;
+else {
+$pageTitle = " تعديل بيانات الموظف " . $row->user_name;
+}
 @endphp
 @section('title')
 {{ $pageTitle }}
@@ -12,9 +15,9 @@ $pageTitle = " تعديل بيانات المنتج " . $row->name ;
 @component('back-end.layout.header')
 @slot('nav_title')
 {{ $pageTitle }}
- <a href="{{ route($routeName.'.create') }}">
+{{-- <a href="{{ route($routeName.'.create') }}">
 <button class="alert-success"> <i class="fa fa-plus"></i> </button>
-</a>
+</a> --}}
 @endslot
 @endcomponent
 
@@ -32,9 +35,10 @@ $pageTitle = " تعديل بيانات المنتج " . $row->name ;
     {{method_field('PUT')}}
     @include('back-end.'.$folderName.'.form')
 
+    {{-- <img src="{{asset( isset($row->image) ? Auth::user()->image : 'panel/assets/images/demo/avatar-80.png')}}"  height="300px" width="300px" style="margin:0 10%;"> <br><br> --}}
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <button class="btn btn-info" type="submit"> تعديل </button>
+            <button class="btn btn-info" type="submit" onclick="return Validate()"> تعديل </button>
         </div>
     </div>
 </form>
@@ -53,6 +57,19 @@ $pageTitle = " تعديل بيانات المنتج " . $row->name ;
 <link rel="stylesheet" href="{{asset('panel/assets/css/rtl-css/plugins/fileinput-rtl.css')}}">
 @endpush
 @push('js')
+<script type="text/javascript">
+    function Validate() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("password_confirmation").value;
+        // console.log(password);
+        // console.log(confirmPassword);
+        if (password != confirmPassword) {
+            alert("Passwords do not match.");
+            return false;
+        }
+        return true;
+    }
+</script>
 <!--Upload button Script Start-->
 <script src="{{asset('panel/assets/js/fileinput.min.js')}}"></script>
 <!--Upload button Script End-->
@@ -70,5 +87,4 @@ $pageTitle = " تعديل بيانات المنتج " . $row->name ;
 <!-- Demo Ck Editor Script For Layout Start-->
 <script src="{{asset('panel/assets/js/pages/editor.js')}}"></script>
 <!-- Demo Ck Editor Script For Layout ENd-->
-
 @endpush

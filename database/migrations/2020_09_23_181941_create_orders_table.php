@@ -17,10 +17,11 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('product_price');
-            $table->integer('price');
+            $table->double('price');
             $table->integer('quantity');
             $table->date('date');
             $table->string('status')->default('sold-out');
+            $table->string('product_name');
             $table->integer('discount');
             
             $table->unsignedBigInteger('product_id')->nullable();
