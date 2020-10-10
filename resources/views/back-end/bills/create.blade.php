@@ -72,5 +72,6 @@
 
 <!-- Demo Ck Editor Script For Layout Start-->
 <script src="{{asset('panel/assets/js/pages/editor.js')}}"></script>
+<script type="text/javascript"></script>
 <!-- Demo Ck Editor Script For Layout ENd-->
 @endpush
