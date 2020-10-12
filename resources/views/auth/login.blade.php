@@ -160,16 +160,14 @@
                             </form>
                         </div>
                         <div class="forgot-pass-box" id="forget-password">
-                            <form action="{{Route('forget.password')}}" class="form-horizontal ls_form" method="POST">
+                            {{-- <form action="{{Route('forget.password')}}" class="form-horizontal ls_form" method="POST">
                                 @csrf
                                 <div class="input-group ls-group-input">
                                     <input class="form-control" type="email" placeholder="someone@mail.com"
                                         name="email">
                                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                                 </div>
-                                {{-- <button>
-                                    <i class="fa fa-rocket"></i> Send
-                                </button> --}}
+                               
                                 <div class="input-group ls-group-input login-btn-box">
                                     <button class="btn ls-dark-btn col-md-12 col-sm-12 col-xs-12"> <i
                                             class="fa fa-rocket"></i> Send
@@ -179,7 +177,7 @@
                                     <a class="login-view" href="#login">Login</a>
 
                                 </div>
-                            </form>
+                            </form> --}}
                         </div>
 
                     </div>
