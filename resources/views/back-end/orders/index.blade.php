@@ -58,7 +58,7 @@
             <td>{{$item->discount}}</td>
             <td>{{$item->quantity}}</td>
             <td>{{$item->date}}</td>
-            <td>{{$item->bill->name ?? " "}}</td>
+            <td>{{$item->bill->name ?? " "}}{{($item->bill->id ?? " ")}}</td>
             <td>{{$item->user->user_name ?? " "}}</td>
             <td>
                     <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
