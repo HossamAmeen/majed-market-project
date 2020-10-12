@@ -26,6 +26,7 @@
     <thead>
         <tr>
             <th>#</th>
+            <th> رقم الفاتورة</th>
             <th>اسم المشتري</th>
             <th>رقم الموبايل</th>
             <th>منتجات</th>
@@ -44,6 +45,7 @@
         @foreach ($rows as $item)
         <tr id="row{{$item->id}}">
             <td> {{$row_num++}}</td>
+            <td>{{$item->id}}</td>
             <td>{{$item->name}}</td>
             <td>{{$item->phone}}</td>
             <td>@foreach ($item->orders as $order)

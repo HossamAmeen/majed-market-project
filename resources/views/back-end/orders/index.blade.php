@@ -41,7 +41,7 @@
             <th>التاريخ</th>
             <th> اسم صاحب الفاتورة</th>
             <th>المسؤول</th>
-            {{-- <th></th> --}}
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -60,8 +60,14 @@
             <td>{{$item->date}}</td>
             <td>{{$item->bill->name ?? " "}}</td>
             <td>{{$item->user->user_name ?? " "}}</td>
-            {{-- <td>
-            </td> --}}
+            <td>
+                    <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('delete') }}
+                        <button type="submit" rel="tooltip" title=""  onclick="check()" class="btn btn-xs btn-danger"><i
+                            class="fa fa-minus"></i></button> 
+                    </form>
+            </td>
             @php
                 $totalCost += $item->price * $item->quantity  - $item->discount; 
                 $totalQuantity += $item->quantity;
@@ -90,4 +96,5 @@
             $("#{{$routeName}}").addClass('active');
         });
 </script>
+
 @endpush

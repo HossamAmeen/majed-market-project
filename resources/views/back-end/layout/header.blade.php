@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <!--Top breadcrumb start -->
         <ol class="breadcrumb">
-            <h3 class="ls-top-header">{{ $nav_title }}</h3>
+            <h2 class="ls-top-header" style="text-align: center">{{ $nav_title }}</h2>
            
         </ol>
         <!--Top breadcrumb start -->

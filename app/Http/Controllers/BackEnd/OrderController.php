@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\BackEnd;
-use App\Models\Order;
+use App\Models\{Order,Product};
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -50,6 +50,29 @@ class OrderController extends BackEndController
         session()->flash('action', 'تم التحديث بنجاح');
         return redirect()->route($this->getClassNameFromModel().'.index');
     }
+    public function destroy($id)
+    {
+       $order = $this->model->FindOrFail($id);
+            $product = Product::find($order->product_id);
+            if(isset($product)){
+                $product->quantity += $order->quantity;
+                $product->save();
+            }
+            else
+            {
+                $requestArray['code'] =  $this->generateRandomNumber(5);
+                while( $this->checkNumber( $requestArray['code'] )  ) {
+                    $requestArray['code'] =  $this->generateRandomNumber(5);
+                }
+            
+                Product::create([
+                    'name'=>$order->product_name,
+                    'code'=> $requestArray['code']
+                ]);
+            }
+            $order->delete();      
+        return redirect()->route($this->getClassNameFromModel() . '.index');
+    }
     public function filter($rows)
     {
         if(request('day') != null)
@@ -65,9 +88,25 @@ class OrderController extends BackEndController
             session(['dateSearch' => request('dateSearch')]);
             $rows = $rows->whereDate('date' ,'>=', request('dateSearch'));
         }
-       
-        
         return $rows;
+    }
+    function generateRandomNumber($length)
+    {
+        $str = rand(0, 9); // first number (0 not allowed)
+        for ($i = 1; $i < $length; $i++)
+            $str .= rand(0, 9);
+
+        return $str;
+    }
+
+    public function checkNumber($code)
+    {
+        $shippingCard = $this->model->where('code' , $code)->first();
+        if($shippingCard){
+            return true;
+        }
+        else
+        return false;
     }
     
 }

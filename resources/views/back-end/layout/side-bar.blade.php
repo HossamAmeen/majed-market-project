@@ -46,12 +46,13 @@
                 <i class="fa fa-group"></i><span>المستخدمين</span>
             </a>
         </li>
-        @endif
+        
         <li>
             <a id="products" href="{{route('products.index')}}" class="{{is_active('products')}}">
                 <i class="fas fa-tshirt	"></i><span>المنتجات</span>
             </a>
         </li>
+        @endif
         <li>
             <a id="orders" href="{{route('orders.index')}}" class="{{is_active('orders')}}">
                 <i class="fas fa-shopping-cart"></i><span>الطلبات</span>

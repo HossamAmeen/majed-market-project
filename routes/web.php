@@ -37,12 +37,12 @@ Route::prefix('admin')->group(function(){
 });
        // Route::get('/print/{id}','PrintController@index')->name('print');
 
-// Route::get('/', function ()
-// {
+Route::get('/', function ()
+{
 
-//     return redirect()->route('users.index');
+    return redirect()->route('users.index');
 
-// });
+});
 
 // Route::get('bill/{id}', 'PrintController@index')->name('bill');
 

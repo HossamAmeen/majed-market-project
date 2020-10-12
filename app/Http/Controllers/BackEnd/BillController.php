@@ -29,10 +29,9 @@ class BillController extends BackEndController
                 }
                 $product = Product::where('code',$request->products[$i])->first();
                 if(!isset($product)){
-
                     $this->destroy($bill->id);
-                    return response(['error'=>"كود هذا المنتج غير صالح "] , 400);
-                    return json_encode(['id' => $bill->id] , 400);
+                    return response(['error'=>"كود هذا المنتج غير صالح " .$request->products[$i] ] , 400);
+                    // return json_encode(['id' => $bill->id] , 400);
                     return redirect()->back()->withErrors(['errorProduct' => "كود هذا المنتج غير صالح " .$request->products[$i] ])->withInput();
                 }
                 $price = $request->costs[$i] ?? $product->selling_price  ;
@@ -71,6 +70,9 @@ class BillController extends BackEndController
             }
         }
         // session()->flash('action', 'تم الاضافه بنجاح');
+        // $bill=Bill::where('id',$id)->first();
+       
+        return view('back-end.bills.bill' , compact('bill'));
         return response(['id' => $bill->id], 200);
         return json_encode(['id' => $bill->id]);
         return redirect()->back()->withInput();
@@ -101,6 +103,18 @@ class BillController extends BackEndController
                 $product->quantity += $order->quantity;
                 $product->save();
             }
+            else
+            {
+                $requestArray['code'] =  $this->generateRandomNumber(5);
+                while( $this->checkNumber( $requestArray['code'] )  ) {
+                    $requestArray['code'] =  $this->generateRandomNumber(5);
+                }
+            
+                Product::create([
+                    'name'=>$order->product_name,
+                    'code'=> $requestArray['code']
+                ]);
+            }
             $order->delete();
         }
       
@@ -123,5 +137,22 @@ class BillController extends BackEndController
 
         // return view('back-end.bills.bill')->with($data);
     }
+    function generateRandomNumber($length)
+    {
+        $str = rand(0, 9); // first number (0 not allowed)
+        for ($i = 1; $i < $length; $i++)
+            $str .= rand(0, 9);
 
+        return $str;
+    }
+
+    public function checkNumber($code)
+    {
+        $shippingCard = $this->model->where('code' , $code)->first();
+        if($shippingCard){
+            return true;
+        }
+        else
+        return false;
+    }
 }

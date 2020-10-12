@@ -3,7 +3,7 @@
     <label class="col-lg-2 control-label">اسم المشتري</label>
     <div class="col-lg-2">
         <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-            required>
+            >
         @error($input)
         <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
@@ -22,13 +22,43 @@
     </div>
 </div>
 
-<div id="toggle">
+<div class="form-group">
+    @php $input = "products[]"; @endphp
+    <label class="col-lg-2 control-label"> المنتج</label>
+    <div class="col-lg-2">
+        <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
+            required>
+    </div>
+</div>
+
+<div class="form-group">
+
+    @php $input = "quantity[]"; @endphp
+    <label class="col-lg-2 control-label">كمية</label>
+    <div class="col-lg-2">
+        <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : 1 }}" class="form-control">
+    </div>
+    @php $input = "costs[]"; @endphp
+    <label class="col-lg-2 control-label">سعر</label>
+    <div class="col-lg-2">
+        <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control">
+    </div>
+    @php $input = "discounts[]"; @endphp
+    <label class="col-lg-2 control-label">الخصم</label>
+    <div class="col-lg-2">
+        <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : 0 }}" class="form-control">
+    </div>
+</div>
+
+
+<div class="newRow"></div>
+<div id="toggle" style="display: none">
     <div class="form-group">
         @php $input = "products[]"; @endphp
         <label class="col-lg-2 control-label"> المنتج</label>
         <div class="col-lg-2">
             <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-                required>
+                >
         </div>
     </div>
 
@@ -52,6 +82,7 @@
     </div>
 </div>
 
+
 <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
         <input type="button" class="btn btn-info edit" value="زيادة منتج" onclick="showDiv()"></div>
@@ -59,8 +90,15 @@
 
 <script type="text/javascript">
     function showDiv(){
+            // $("#toggle").css("display", "block");
+            // $("#toggle").clone().insertAfter("#toggle:last");
+            
+            $(".newRow").append($("#toggle").html())
+            // var mySecondDiv=$('<div id="mySecondDiv"></div>');
+            // $('#myDiv').html(mySecondDiv);
 
-            $("#toggle").clone().insertAfter("#toggle:last");
+            // var mySecondDiv=$('<div id="mySecondDiv"></div>');
+            // $('#myDiv').append(mySecondDiv);
         }
 
 </script>

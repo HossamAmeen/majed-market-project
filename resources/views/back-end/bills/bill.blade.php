@@ -27,12 +27,15 @@
 
     <div class="container" id="GFG">
             <div class="ticket-content" id="design-1">
-                    <h3> مجدى
+                    <h3> 4MD <img src="{{asset('4md.jpg')}}" width="30" height="30"> 
                       <br>
                       <span class="date">{{now()}}</span>
                     </h3>
+                    <h4 class="name"><span>رقم الفاتورة :</span>
+                        <span> {{$bill->id}}</span>
+                    </h4>
                     <h4 class="name"><span>اسم العميل:</span>
-                        <span> {{$bill->name}}</span>
+                      <span> {{$bill->name}}</span>
                     </h4>
 
                     <h4 class="phone"><span>التلفون:</span>

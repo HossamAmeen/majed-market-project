@@ -13,6 +13,7 @@
     @endcomponent
 
         @component('back-end.shared.create')
+       
             <form id="addForm" method="post" class="form-horizontal ls_form" action="{{ route($routeName.'.store') }}"
                     >
                     @if (session()->get('action') )
@@ -41,19 +42,35 @@
 
                 @csrf
                 @include('back-end.'.$folderName.'.form')
-
+                  {{-- id  <input id="billID" > --}}
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-info" type="submit" >  إضافه  </button>
+                        <button class="btn btn-info" onclick="printDiv()" type="button" >طباعة</button>
                     </div>
                     {{-- <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-info" type="button" onclick="printPageWithAjax()" >  test  </button>
                     </div> --}}
                 </div>
              </form>
+            
+            <div id="printDivBill" style="display: none">
+               
+            </div>
         @endcomponent
+       
 @endsection
 @push('css')
+
+
+{{-- <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/style.css.map')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/style.scss')}}">
+<link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
+<script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/jquery.printPage.js')}}"></script> --}}
+
       <!-- Responsive Style For-->
   <link href="{{asset('panel/assets/css/rtl-css/responsive-rtl.css')}}" rel="stylesheet">
   <!-- Responsive Style For-->
@@ -68,6 +85,11 @@
 @push('js')
 
 <script>
+    function printDiv(){
+        var mywindow = window.open('', 'PRINT', 'height=400,width=600');
+        mywindow.document.write( $('#printDivBill').html());
+        mywindow.print();
+    }
     function printPageWithAjax(){
 
 // var route= $(event.target).attr("data-route");
@@ -90,8 +112,7 @@ mywindow.print();
 
         $("#addForm").submit(function(e)
         {
-             id = 0 ; 
-             window.id=1;  
+            
             e.preventDefault();
             var formData  = new FormData(jQuery('#addForm')[0]);
             // console.log(formData);
@@ -110,18 +131,14 @@ mywindow.print();
                 {
 
                     console.log("success");
-                    console.log(dataBack.id)
-                    id =dataBack.id;
-                    window.id=15;  
+                    // console.log(dataBack.id)
                     document.getElementById("addForm").reset();
                     document.getElementById("successDivMessage").style.display="block";
-
+                    document.getElementById("printDivBill").style.display="block";
+                    // $('#billID').val(dataBack.id);
+                    $('#printDivBill').html(dataBack);
+                    $('#printDivBill').append(" <button onclick='printDiv()' >طباعة</button>")
                    
-                    // var mywindow = window.open("{{url('/admin/print-bill/id')}}", 'PRINT', 'height=600,width=800');
-                    // mywindow.focus(); // necessary for IE >= 10
-                    // mywindow.print();
-                    // window.open("https://www.w3schools.com" ,'PRINT', 'height=600,width=800'); 
-                     
                 //    alert('done') 
 
                 }, error: function (xhr, status, error)
@@ -135,9 +152,12 @@ mywindow.print();
                     errorMessageDiv.style.display="block";
                     else
                     alert( xhr.responseJSON.error)
-                    console.log('test')
-                    document.getElementById("errorBox").style.display="block";
-                    $("#errorDivMessage").html("<button class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"+ xhr.responseJSON.error);
+
+                    document.getElementById("printDivBill").style.display="none";
+                    // console.log('test')
+                    // document.getElementById("errorBox").style.display="block";
+                    $("#errorDivMessage").html("<button class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"
+                                        + xhr.responseJSON.error);
                     // $.each(xhr.responseJSON.errors,function(key,item)
                     // {
 
@@ -146,17 +166,22 @@ mywindow.print();
                 }
                
             })
-            // var mywindow = window.open("{{url('/admin/print-bill/')}}"+'/'+ id, 'PRINT', 'height=600,width=800');
-            // if(id != 0)
-            // var mywindow = window.open("{{url('/admin/print-bill/')}}"+'/'+id, 'PRINT', 'height=600,width=800');
-            // else
-            // var mywindow = window.open("{{url('/admin/print-bill/')}}"+'/'+1, 'PRINT', 'height=600,width=800');
+            // var printWindow = window.open("", 'PRINT', 'height=600,width=800');
+            // printWindow.document.write("test"); 
+            // $("#printDivBill").print();
+            // printWindow.print();
         })
 
 
 
 
 </script>
+{{-- <script>
+    function printBill(){
+        var printWindow = window.open("", 'PRINT', 'height=600,width=800');
+            printWindow.document.write("test"); 
+    }
+</script> --}}
      <!--Upload button Script Start-->
    <script src="{{asset('panel/assets/js/fileinput.min.js')}}"></script>
    <!--Upload button Script End-->

@@ -66,7 +66,7 @@
             {{-- <td>{{$item->discount}}</td> --}}
             <td>
                 @section('moreButton')
-                <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
+                <a href="#" rel="tooltip" title="طباعة" onclick="printCode({{$item->code}})" class="btn btn-xs btn-info">
                     <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
                 </a>
                 @endsection
@@ -78,8 +78,7 @@
     </tbody>
 </table>
 <br><br>
-<h2 style="text-align: center">اجمالي عدد القطع : 5     -   اجمالي فلوس : 25 - اجمالي سعر البيع : 35 - صافي المكسب : 10</h2>
-<br><br>
+
 @endcomponent
 @endsection
 
@@ -89,6 +88,13 @@
     $(document).ready(function(){
             $("#{{$routeName}}").addClass('active');
         });
+</script>
+<script>
+    function printCode(code){
+        var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+        myWindow.document.write("<h1 style='text-align:center'>"+code+"</h1>");
+        myWindow.print();
+    }
 </script>
 @endpush
 
