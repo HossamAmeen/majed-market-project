@@ -131,11 +131,8 @@ class BillController extends BackEndController
         // return $id;
         // return "<td>test</td>";
         $bill=Bill::with('orders')->where('id',$id)->first();
-       
-        return view('back-end.bills.bill' , compact('bill'));
-        // $data['rows']=Bill::with('billedProducts')->where('id',$id)->get();
-
-        // return view('back-end.bills.bill')->with($data);
+       if(isset($bill))
+       return view('back-end.bills.bill' , compact('bill'));
     }
     function generateRandomNumber($length)
     {

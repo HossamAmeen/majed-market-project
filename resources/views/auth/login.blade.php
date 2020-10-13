@@ -26,7 +26,7 @@
         href="{{asset('panel/assets/images/ios/fickle-logo-114.png')}}" />
 
     <!-- TODO: Add a favicon -->
-    <link rel="shortcut icon" href="{{asset('panel/assets/images/ico/fab.ico')}}">
+    <link rel="shortcut icon" href="{{asset('4md.jpg')}}">
 
     <title>Login</title>
 

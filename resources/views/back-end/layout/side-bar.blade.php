@@ -1,7 +1,11 @@
 <section id="left-navigation">
     <!--Left navigation user details start-->
     <div class="user-image">
-        <img src="{{asset( isset(Auth::user()->image) ? Auth::user()->image : 'panel/assets/images/demo/avatar-80.png')}}" alt=""  width="100" height="100"/>
+        <img 
+        {{-- src="{{asset( isset(Auth::user()->image) ? Auth::user()->image : 'panel/assets/images/demo/avatar-80.png')}}" --}}
+        
+        src="{{asset('4md.jpg')}}"
+        alt=""  width="100" height="100"/>
         <div class="user-online-status"><span class="user-status is-online  "></span> </div>
     </div>
     <ul class="social-icon">

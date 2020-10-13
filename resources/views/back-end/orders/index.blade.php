@@ -58,14 +58,20 @@
             <td>{{$item->discount}}</td>
             <td>{{$item->quantity}}</td>
             <td>{{$item->date}}</td>
-            <td>{{$item->bill->name ?? " "}}{{($item->bill->id ?? " ")}}</td>
+            <td>{{$item->bill->name ?? " "}}({{$item->bill->id ?? " "}})</td>
             <td>{{$item->user->user_name ?? " "}}</td>
             <td>
                     <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
                         <button type="submit" rel="tooltip" title=""  onclick="check()" class="btn btn-xs btn-danger"><i
-                            class="fa fa-minus"></i></button> 
+                            class="fa fa-minus"></i></button>
+                    @php
+                        $billId = $item->bill->id ?? 0;
+                    @endphp
+                    <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
+                        <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$billId)}}"></i>
+                    </a>
                     </form>
             </td>
             @php
@@ -95,6 +101,13 @@
     $(document).ready(function(){
             $("#{{$routeName}}").addClass('active');
         });
+
+    function printPageWithAjax(){
+        var route= $(event.target).attr("data-route");
+        var mywindow = window.open(route, 'PRINT', 'height=600,width=800');
+        mywindow.focus(); // necessary for IE >= 10
+        mywindow.print();
+    }
 </script>
 
 @endpush
