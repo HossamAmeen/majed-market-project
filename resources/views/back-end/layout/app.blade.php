@@ -305,7 +305,7 @@
     <script type="text/javascript" src="{{asset('panel/assets/js/bootstrap.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('panel/assets/js/multipleAccordion.js')}}"></script>
     <!--jqueryui for table start-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
     <!--jqueryui for table end-->
 
 
