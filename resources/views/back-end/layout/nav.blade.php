@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <!--Logo text start-->
         <div class="header-logo">
-            <a href="{{route('home')}}" title="">
+            <a href="#" title="">
                 <h1>{{$briefs->name}}</h1>
             </a>
         </div>
