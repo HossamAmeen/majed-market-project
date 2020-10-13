@@ -2,7 +2,8 @@
     <!--Left navigation user details start-->
     <div class="user-image">
         <img class='img-responsive'
-            src="{{asset( isset(Auth::user()->image) ? Auth::user()->image : 'panel/assets/images/demo/avatar-80.png')}}"
+            {{-- src="{{asset( isset(Auth::user()->image) ? Auth::user()->image : 'panel/assets/images/demo/avatar-80.png')}}" --}}
+            src="{{asset('4md.jpg')}}"
             alt="" width="100" height="100" />
         <div class="user-online-status"><span class="user-status is-online  "></span> </div>
     </div>
@@ -17,7 +18,7 @@
     <!--Phone Navigation Menu icon start-->
     <div class="phone-nav-box visible-xs">
         <a class="phone-logo" href="index.html" title="">
-            <h1>baseProject</h1>
+            <h1>{{$briefs->name}}</h1>
         </a>
         <a class="phone-nav-control" href="javascript:void(0)">
             <span class="fa fa-bars"></span>
