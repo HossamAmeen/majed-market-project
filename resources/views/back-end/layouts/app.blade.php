@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http:/www.w3.org/1999/html">
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,16 +16,16 @@
     <!-- iOS webapp metatags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    {{-- <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> --}}
     <meta name="csrf-token" content="{!! csrf_token() !!}">
+    
     <!-- iOS webapp icons -->
     <link rel="apple-touch-icon-precomposed" href="{{asset('panel/assets/images/ios/fickle-logo-72.png')}}" />
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"
-        href="{{asset('panel/assets/images/ios/fickle-logo-72.png')}}" />
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-        href="{{asset('panel/assets/images/ios/fickle-logo-114.png')}}" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('panel/assets/images/ios/fickle-logo-72.png')}}" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('panel/assets/images/ios/fickle-logo-114.png')}}" />
 
     <!-- TODO: Add a favicon -->
-    <link rel="shortcut icon" href="{{asset('panel/assets/images/ico/fab.ico')}}">
+    <link rel="shortcut icon" href="{{asset('4md.jpg')}}">
 
     <title> @yield('title')</title>
 
@@ -53,7 +52,7 @@
 
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -62,8 +61,7 @@
     <![endif]-->
     @stack('css')
 </head>
-
-<body class="" style=" font-family: 'XB Riyaz', sans-serif;">
+<body class="">
     <!--Navigation Top Bar Start-->
     @include('back-end.layout.nav')
 
@@ -71,7 +69,7 @@
     <section id="main-container">
 
         <!--Left navigation section start-->
-        @include('back-end.layout.side-bar')
+         @include('back-end.layout.side-bar')
         <!--Left navigation section end-->
 
 
@@ -102,7 +100,7 @@
             <!--Tab navigation end -->
 
             <!--Tab content start-->
-            {{-- <div class="tab-content">
+            <div class="tab-content">
                 <div class="tab-pane active" id="chatTab">
                     <div class="nano">
                         <div class="nano-content">
@@ -224,14 +222,10 @@
                         <h3 class="ls-header">Account Setting</h3>
                         <div class="setting-box-content">
                             <ul>
-                                <li><span class="pull-left">Online status: </span><input type="checkbox"
-                                        class="js-switch-red" checked /></li>
-                                <li><span class="pull-left">Show offline contact: </span><input type="checkbox"
-                                        class="js-switch-light-blue" checked /></li>
-                                <li><span class="pull-left">Invisible mode: </span><input class="js-switch"
-                                        type="checkbox" checked></li>
-                                <li><span class="pull-left">Log all message:</span><input class="js-switch-light-green"
-                                        type="checkbox" checked></li>
+                                <li><span class="pull-left">Online status: </span><input type="checkbox" class="js-switch-red" checked/></li>
+                                <li><span class="pull-left">Show offline contact: </span><input type="checkbox" class="js-switch-light-blue" checked/></li>
+                                <li><span class="pull-left">Invisible mode: </span><input class="js-switch" type="checkbox" checked></li>
+                                <li><span class="pull-left">Log all message:</span><input class="js-switch-light-green" type="checkbox" checked></li>
                             </ul>
                         </div>
                     </div>
@@ -256,28 +250,28 @@
                             <h5>File uploading</h5>
                             <div class="progress">
                                 <div class="progress-bar ls-light-blue-progress six-sec-ease-in-out"
-                                    aria-valuetransitiongoal="10"></div>
+                                     aria-valuetransitiongoal="10"></div>
                             </div>
 
                             <h5>Plugin setup</h5>
                             <div class="progress progress-striped active">
                                 <div class="progress-bar six-sec-ease-in-out ls-light-green-progress"
-                                    aria-valuetransitiongoal="20"></div>
+                                     aria-valuetransitiongoal="20"></div>
                             </div>
                             <h5>Post New Article</h5>
                             <div class="progress progress-striped active">
                                 <div class="progress-bar ls-yellow-progress six-sec-ease-in-out"
-                                    aria-valuetransitiongoal="80"></div>
+                                     aria-valuetransitiongoal="80"></div>
                             </div>
                             <h5>Create New User</h5>
                             <div class="progress progress-striped active">
                                 <div class="progress-bar ls-red-progress six-sec-ease-in-out"
-                                    aria-valuetransitiongoal="100"></div>
+                                     aria-valuetransitiongoal="100"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <!--Tab content -->
         </section>
         <!--Right hidden  section end -->
@@ -299,65 +293,68 @@
         </div>
 
     </section>
-    <!--Layout Script start -->
-    <script type="text/javascript" src="{{asset('panel/assets/js/color.js')}}"></script>
-    <script type="text/javascript" src="{{asset('panel/assets/js/lib/jquery-1.11.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('panel/assets/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('panel/assets/js/multipleAccordion.js')}}"></script>
-    <!--jqueryui for table start-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
-    <!--jqueryui for table end-->
+     <!--Layout Script start -->
+     <script type="text/javascript" src="{{asset('panel/assets/js/color.js')}}"></script>
+     <script type="text/javascript" src="{{asset('panel/assets/js/lib/jquery-1.11.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('panel/assets/js/bootstrap.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('panel/assets/js/multipleAccordion.js')}}"></script>
+     <!--jqueryui for table start-->
+     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+     <!--jqueryui for table end-->
 
 
-    <!--easing Library Script Start -->
-    <script src="{{asset('panel/assets/js/lib/jquery.easing.js')}}"></script>
-    <!--easing Library Script End -->
+     <!--easing Library Script Start -->
+     <script src="{{asset('panel/assets/js/lib/jquery.easing.js')}}"></script>
+     <!--easing Library Script End -->
 
-    <!--Nano Scroll Script Start -->
-    <script src="{{asset('panel/assets/js/jquery.nanoscroller.min.js')}}"></script>
-    <!--Nano Scroll Script End -->
+     <!--Nano Scroll Script Start -->
+     <script src="{{asset('panel/assets/js/jquery.nanoscroller.min.js')}}"></script>
+     <!--Nano Scroll Script End -->
 
-    <!--switchery Script Start -->
-    <script src="{{asset('panel/assets/js/switchery.min.js')}}"></script>
-    <!--switchery Script End -->
+     <!--switchery Script Start -->
+     <script src="{{asset('panel/assets/js/switchery.min.js')}}"></script>
+     <!--switchery Script End -->
 
-    <!--bootstrap switch Button Script Start-->
-    <script src="{{asset('panel/assets/js/bootstrap-switch.js')}}"></script>
-    <!--bootstrap switch Button Script End-->
+     <!--bootstrap switch Button Script Start-->
+     <script src="{{asset('panel/assets/js/bootstrap-switch.js')}}"></script>
+     <!--bootstrap switch Button Script End-->
 
-    <!--easypie Library Script Start -->
-    <script src="{{asset('panel/assets/js/jquery.easypiechart.min.js')}}"></script>
-    <!--easypie Library Script Start -->
+     <!--easypie Library Script Start -->
+     <script src="{{asset('panel/assets/js/jquery.easypiechart.min.js')}}"></script>
+     <!--easypie Library Script Start -->
 
-    <!--bootstrap-progressbar Library script Start-->
-    <script src="{{asset('panel/assets/js/bootstrap-progressbar.min.js')}}"></script>
-    <!--bootstrap-progressbar Library script End-->
+     <!--bootstrap-progressbar Library script Start-->
+     <script src="{{asset('panel/assets/js/bootstrap-progressbar.min.js')}}"></script>
+     <!--bootstrap-progressbar Library script End-->
 
-    <script type="text/javascript" src="{{asset('panel/assets/js/pages/layout.js')}}"></script>
-    <!--Layout Script End -->
+     <script type="text/javascript" src="{{asset('panel/assets/js/pages/layout.js')}}"></script>
+     <!--Layout Script End -->
 
 
 
-    <!--Drag & Drop & Sort  table start-->
-    <script src="{{asset('panel/assets/js/tsort.js')}}"></script>
-    <script src="{{asset('panel/assets/js/jquery.tablednd.js')}}"></script>
-    <script src="{{asset('panel/assets/js/jquery.dragtable.js')}}"></script>
-    <!--Drag & Drop & Sort table end-->
+     <!--Drag & Drop & Sort  table start-->
+     <script src="{{asset('panel/assets/js/tsort.js')}}"></script>
+     <script src="{{asset('panel/assets/js/jquery.tablednd.js')}}"></script>
+     <script src="{{asset('panel/assets/js/jquery.dragtable.js')}}"></script>
+     <!--Drag & Drop & Sort table end-->
 
-    <!--Editable-table Start-->
-    <script src="{{asset('panel/assets/js/editable-table/jquery.dataTables.js')}}"></script>
-    <script src="{{asset('panel/assets/js/editable-table/jquery.validate.js')}}"></script>
-    <script src="{{asset('panel/assets/js/editable-table/jquery.jeditable.js')}}"></script>
-    <script src="{{asset('panel/assets/js/editable-table/jquery.dataTables.editable.js')}}"></script>
-    <!--Editable-table Finish -->
+     <!--Editable-table Start-->
+     <script src="{{asset('panel/assets/js/editable-table/jquery.dataTables.js')}}"></script>
+     <script src="{{asset('panel/assets/js/editable-table/jquery.validate.js')}}"></script>
+     <script src="{{asset('panel/assets/js/editable-table/jquery.jeditable.js')}}"></script>
+     <script src="{{asset('panel/assets/js/editable-table/jquery.dataTables.editable.js')}}"></script>
+     <!--Editable-table Finish -->
 
-    <script src="{{asset('panel/assets/js/bootstrap-progressbar.min.js')}}"></script>
+     <script src="{{asset('panel/assets/js/bootstrap-progressbar.min.js')}}"></script>
 
-    <!--Demo table script start-->
-    <script src="{{asset('panel/assets/js/pages/table.js')}}"></script>
-    <!--Demo table script end-->
+     <!--Demo table script start-->
+     <script src="{{asset('panel/assets/js/pages/table.js')}}"></script>
+     <!--Demo table script end-->
+
+     {{-- <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
+  <script type="text/javascript" src="js/jquery.printPage.js"></script> --}}
 
     @stack('js')
 </body>
-
 </html>
