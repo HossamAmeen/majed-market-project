@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         // OrderSeeder::class,
         // BillSeeder::class
     ]);
-    //    factory('App\Models\Configration',1)->create();
+       factory('App\Models\Configration',1)->create();
     //    factory(App\Models\Category::class,100)->create();
     //    factory(App\Models\Product::class,100)->create();
     //    factory(App\Models\Bill::class,100)->create();
