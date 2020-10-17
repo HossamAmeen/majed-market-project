@@ -35,6 +35,7 @@ class BillController extends BackEndController
                     return redirect()->back()->withErrors(['errorProduct' => "كود هذا المنتج غير صالح " .$request->products[$i] ])->withInput();
                 }
                 $price = $request->costs[$i] ?? $product->selling_price  ;
+
                 $quantity = $request->quantity[$i] ?? 1 ;
                 if($product->quantity < $quantity){
                     $this->destroy($bill->id);
@@ -80,13 +81,45 @@ class BillController extends BackEndController
     }
 
     public function update($id , Request $request){
-
-
-
         $row = $this->model->FindOrFail($id);
         $requestArray = $request->all();
         $requestArray['user_id'] = Auth::user()->id;
         $row->update($requestArray);
+        // return $request->orders;
+        for($i=0; $i<count($request->orders) ; $i++){
+           
+           
+            $order = Order::where('id' ,$request->orders[$i] )->first();
+
+            $product = Product::find($order->product_id);
+            if(!isset($product)){
+                $requestArray['code'] =  $this->generateRandomNumber(5);
+                while( $this->checkNumber( $requestArray['code'] )  ) {
+                    $requestArray['code'] =  $this->generateRandomNumber(5);
+                }
+            
+                $product = Product::create([
+                    'name'=>$order->product_name,
+                    'code'=> $requestArray['code'],
+                    'quantity'=>abs($order->quantity - $request->quantity[$i] ),
+                    'user_id'=> Auth::user()->id
+                ]);
+               
+            }
+            else
+            {
+                if(($product->quantity + $order->quantity ) < $request->quantity[$i]){
+                    return redirect()->back()->withErrors(['errorProduct' => " هذا المنتج اقل من الكمية المطلوبة او ناقص "  .$product->name ])->withInput();
+                }
+                else
+                {
+                    $product->quantity = ($product->quantity + $order->quantity ) - $request->quantity[$i] ;
+                    $product->save(); 
+                }
+               
+            }
+            $order->update(['quantity' =>$request->quantity[$i] , 'product_id'=> $product->id]);
+        }
 
 
         session()->flash('action', 'تم التحديث بنجاح');
@@ -112,7 +145,9 @@ class BillController extends BackEndController
             
                 Product::create([
                     'name'=>$order->product_name,
-                    'code'=> $requestArray['code']
+                    'code'=> $requestArray['code'],
+                    'quantity'=>$order->quantity,
+                    'user_id'=> Auth::user()->id
                 ]);
             }
             $order->delete();
@@ -145,7 +180,7 @@ class BillController extends BackEndController
 
     public function checkNumber($code)
     {
-        $shippingCard = $this->model->where('code' , $code)->first();
+        $shippingCard = Product::where('code' , $code)->first();
         if($shippingCard){
             return true;
         }

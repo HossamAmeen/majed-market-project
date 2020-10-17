@@ -101,7 +101,7 @@ class OrderController extends BackEndController
 
     public function checkNumber($code)
     {
-        $shippingCard = $this->model->where('code' , $code)->first();
+        $shippingCard = Product::where('code' , $code)->first();
         if($shippingCard){
             return true;
         }

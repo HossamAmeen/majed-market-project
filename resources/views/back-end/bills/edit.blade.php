@@ -31,12 +31,20 @@ $pageTitle = " تعديل بيانات الفاتورة رقم  " . $row->id;
     data-bv-feedbackicons-validating="fa fa-refresh" enctype="multipart/form-data">
     @csrf
     {{method_field('PUT')}}
+    @error('errorProduct')
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert"
+            aria-hidden="true">&times;</button>
+        {{ $message }}
+    </div>
+    @enderror
+    
     <div class="form-group">
         @php $input = "name"; @endphp
         <label class="col-lg-2 control-label">اسم المشتري</label>
         <div class="col-lg-2">
             <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-                required>
+                >
             @error($input)
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -46,7 +54,7 @@ $pageTitle = " تعديل بيانات الفاتورة رقم  " . $row->id;
         @php $input = "phone"; @endphp
         <label class="col-lg-2 control-label">رقم الموبايل</label>
         <div class="col-lg-2">
-            <input type="text"    name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control">
+            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control">
             @error($input)
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -55,15 +63,37 @@ $pageTitle = " تعديل بيانات الفاتورة رقم  " . $row->id;
         </div>
     </div>
     
-    <table>
-        <tr>
-            <th>المنتج</th>
-            <th>السعر</th>
-            <th>الكمية</th>
-            <th>الخصم</th>
-            <th></th>
-        </tr>
-    </table>
+    @foreach($row->orders as $key => $value)
+    <input type="hidden" name="orders[]" value="{{$value->id}}" class="form-control" >
+    <div class="form-group">
+        @php $input = "products[]"; @endphp
+        <label class="col-lg-2 control-label"> المنتج</label>
+        <div class="col-lg-2">
+            <input type="text" name="{{ $input }}" value="{{$value->product->code??" "}}" class="form-control"
+                readonly>
+            
+                <span style="color: blue">{{$value->product_name}}</span>
+        </div>
+    </div>
+    <div class="form-group">
+
+        @php $input = "quantity[]"; @endphp
+        <label class="col-lg-2 control-label">كمية</label>
+        <div class="col-lg-2">
+            <input type="text" name="{{ $input }}" value="{{$value->quantity}}" class="form-control">
+        </div>
+        {{-- @php $input = "costs[]"; @endphp
+        <label class="col-lg-2 control-label">سعر</label>
+        <div class="col-lg-2">
+            <input type="text" name="{{ $input }}" value="{{$value->product_name}}" class="form-control">
+        </div> --}}
+        {{-- @php $input = "discounts[]"; @endphp
+        <label class="col-lg-2 control-label">الخصم</label>
+        <div class="col-lg-2">
+            <input type="text" name="{{ $input }}" value="{{$value->discount}}" class="form-control">
+        </div> --}}
+    </div>
+    @endforeach
 
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
