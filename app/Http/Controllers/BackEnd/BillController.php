@@ -86,6 +86,7 @@ class BillController extends BackEndController
         $requestArray['user_id'] = Auth::user()->id;
         $row->update($requestArray);
         // return $request->orders;
+        if(is_array($request->orders))
         for($i=0; $i<count($request->orders) ; $i++){
            
            
