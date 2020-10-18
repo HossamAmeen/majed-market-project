@@ -7,17 +7,17 @@
 @section('content')
 <a class="btn  btn-danger" href="{{$routeName.'?quantity=' . 5}}"> المنتجات المقتربة من النفاذ</a>
 <br><br>
-<button  class="btn  btn-info">عدد الاصناف :  {{$productsCount}} </button>
-<button  class="btn  btn-info">اجمالي القطع :  {{$totalQuantity}} </button>
-<button  class="btn  btn-info">اجمالي سعر الشراء  : {{$totalBuyCost}}</button>
-<button  class="btn  btn-info">اجمالي سعر البيع  : {{$totalSellCost}} </button>
-<button  class="btn  btn-success">صافي مكسب: {{$totalSellCost - $totalBuyCost}}</button>
+<button class="btn  btn-info">عدد الاصناف : {{$productsCount}} </button>
+<button class="btn  btn-info">اجمالي القطع : {{$totalQuantity}} </button>
+<button class="btn  btn-info">اجمالي سعر الشراء : {{$totalBuyCost}}</button>
+<button class="btn  btn-info">اجمالي سعر البيع : {{$totalSellCost}} </button>
+<button class="btn  btn-success">صافي مكسب: {{$totalSellCost - $totalBuyCost}}</button>
 {{-- <p style="float: right">عدد القطع :  {{$productsCount}}</p>
-<p style="margin: 0% 20% ; float: right">اجمالي سعر الشراء  : {{$totalBuyCost}}</p>
-<p style="margin: 0% 20%">اجمالي سعر البيع  : {{$totalSellCost}}</p>
+<p style="margin: 0% 20% ; float: right">اجمالي سعر الشراء : {{$totalBuyCost}}</p>
+<p style="margin: 0% 20%">اجمالي سعر البيع : {{$totalSellCost}}</p>
 <h4 style="text-align: center">صافي مكسب: {{$totalSellCost - $totalBuyCost}}</h4> --}}
 <br><br>
-  
+
 
 @component('back-end.layout.header')
 @slot('nav_title')
@@ -54,25 +54,42 @@
     <tbody>
         @foreach ($rows as $item)
         <tr @if($item->quantity < 3) style="color: red" @endif>
-            <td> {{$row_num++}}</td>
-            <td>{{$item->name}}</td>
-            <td>{{$item->purchasing_price}}</td>
-            <td>{{$item->selling_price}}</td>
-            <td>{{$item->quantity}}</td>
-            <td>{{$item->purchasing_price * $item->quantity}}</td>
-            <td>{{$item->selling_price * $item->quantity}}</td>
-            <td>{{$item->code}}</td>
-            <td>{{$item->user->user_name ?? " "}}</td>
-            {{-- <td>{{$item->discount}}</td> --}}
-            <td>
-                @section('moreButton')
-                <a href="#" rel="tooltip" title="طباعة" onclick="printCode({{$item->code}})" class="btn btn-xs btn-info">
-                    <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
-                </a>
-                @endsection
-                @include('back-end.shared.buttons.delete')
-               
-            </td>
+                <td> {{$row_num++}}</td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->purchasing_price}}</td>
+                <td>{{$item->selling_price}}</td>
+                <td>{{$item->quantity}}</td>
+                <td>{{$item->purchasing_price * $item->quantity}}</td>
+                <td>{{$item->selling_price * $item->quantity}}</td>
+                <td>{{$item->code}}</td>
+                <td>{{$item->user->user_name ?? " "}}</td>
+                {{-- <td>{{$item->discount}}</td> --}}
+                <td>
+
+
+                    
+                    <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('delete') }}
+                        <a href="{{ route($routeName.'.edit' , ['id' => $item]) }}" rel="tooltip" title=""
+                            class="btn btn-xs btn-info">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </a>
+
+                        <a href="#" rel="tooltip" title="طباعة" onclick="printCode( {{$item->code}} , {{$item->selling_price}})"
+                            class="btn btn-xs btn-info">
+                            <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
+                        </a>
+                        <button type="submit" rel="tooltip" title="" onclick="check()" class="btn btn-xs btn-danger"><i
+                                class="fa fa-minus"></i></button>
+                        @yield('moreButton')
+                    </form>
+                    
+
+                   
+                    
+                   
+                </td>
         </tr>
         @endforeach
     </tbody>
@@ -90,12 +107,11 @@
         });
 </script>
 <script>
-    function printCode(code){
-        var myWindow = window.open("", "MsgWindow", "width=200,height=100");
+    function printCode(code , price){
+        var myWindow = window.open("", "MsgWindow", "width=400,height=200");
         myWindow.document.write("<h1 style='text-align:center'>"+code+"</h1>");
-        myWindow.print();
+        myWindow.document.write("<h2 style='text-align:center'>السعر ( "+price+")</h2>");
+        // myWindow.print();
     }
 </script>
 @endpush
-
-
