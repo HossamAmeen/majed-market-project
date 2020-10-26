@@ -22,18 +22,10 @@ class NoteController extends BackEndController
         return redirect()->route($this->getClassNameFromModel().'.index');
     }
     public function update($id , Request $request){
-
-
-
         $row = $this->model->FindOrFail($id);
         $requestArray = $request->all();
-
-      
-
-      $requestArray['user_id'] = Auth::user()->id;
+        $requestArray['user_id'] = Auth::user()->id;
         $row->update($requestArray);
-
-
         session()->flash('action', 'تم التحديث بنجاح');
         return redirect()->route($this->getClassNameFromModel().'.index');
     }
