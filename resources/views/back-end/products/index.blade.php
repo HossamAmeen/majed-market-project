@@ -80,10 +80,11 @@
                             class="btn btn-xs btn-info">
                             <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
                         </a> -->
+                        <a href="{{url('/admin/print-barcode/'.$item->id)}}" rel="tooltip" title="عرض"  class="btn btn-xs btn-info">
+                        <i class="fa fa-eye" data-route="{{url('/admin/print-barcode/'.$item->id)}}"></i>
                         <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
                         <i class="fa fa-print" data-route="{{url('/admin/print-barcode/'.$item->id)}}"></i>
-                        <a href="{{url('/admin/print-barcode/'.$item->id)}}" rel="tooltip" title="print"  class="btn btn-xs btn-info">
-                        <i class="fa fa-print" data-route="{{url('/admin/print-barcode/'.$item->id)}}"></i>
+                        
                     </a>
                         <button type="submit" rel="tooltip" title="" onclick="check()" class="btn btn-xs btn-danger"><i
                                 class="fa fa-minus"></i></button>
