@@ -16,9 +16,10 @@
       } 
     </script>
   </head>
-  <body style="text-align:center;">
+  <body style="font-size:12px;text-align:center;margin: 0px;margin-top: 5px;">
     <div id="print-div" style="padding: 10px;">
-      <span style="text-align: left;">{{$product->name}}</span>
+      <span style="text-align:center;margin-bottom:-10px;overflow:hidden;text-overflow:ellipsis;font-size: 9px;display:-webkit-box;-webkit-line-clamp: 2; 
+      /* number of lines to show /-webkit-box-orient: vertical;/ display: block; */">{{$product->name}}</span>
       <br>
       <span style="text-align: left;">السعر {{$product->selling_price}} جنية</span>
       <br>
