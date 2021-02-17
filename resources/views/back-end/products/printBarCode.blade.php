@@ -22,7 +22,14 @@
       <br>
       <span style="text-align: left;">السعر {{$product->selling_price}} جنية</span>
       <br>
-      <img id="barcode" src="./barcode.gif" style="width:120px">
+     @php
+ 
+
+     echo '<img src="data:image/png;base64,' . DNS1D::getBarcodePNG($product->code, 'C39E') . '" style="width:120px" height="38" width="190" alt="barcode"   />';
+
+
+     @endphp
+      <!-- <img id="barcode" src="./barcode.gif" style="width:120px"> -->
     </div>
     <input type="button" value="click" onclick="printDiv()">
   </body>

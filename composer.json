@@ -14,9 +14,10 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "twbs/bootstrap": "4.0.0-alpha.6",
-        "yajra/laravel-datatables-oracle": "^9.11"
-
+        "yajra/laravel-datatables-oracle": "^9.11",
+        "milon/barcode": "^5.1"
     },
+
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
         "filp/whoops": "^2.0",

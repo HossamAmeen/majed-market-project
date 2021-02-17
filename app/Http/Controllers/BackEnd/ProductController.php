@@ -5,7 +5,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use DNS1D;
 use Image ,DB;
 
 class ProductController extends BackEndController
@@ -56,7 +56,9 @@ class ProductController extends BackEndController
     }
     public function printBarCode($productId)
     {
+        
         $product=Product::find($productId);
+        
         if(isset($product))
         return view('back-end.products.printBarCode' , compact('product'));
     }
