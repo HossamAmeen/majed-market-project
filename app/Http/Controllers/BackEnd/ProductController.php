@@ -54,6 +54,12 @@ class ProductController extends BackEndController
 
         return $str;
     }
+    public function printBarCode($productId)
+    {
+        $product=Product::find($productId);
+        if(isset($product))
+        return view('back-end.products.printBarCode' , compact('product'));
+    }
     public function appendIndex($rows)
     {
         // $products = $this->model->get();  

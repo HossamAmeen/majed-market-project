@@ -164,8 +164,7 @@ class BillController extends BackEndController
 
     public function printBill($id)
     {
-        // return $id;
-        // return "<td>test</td>";
+      
         $bill=Bill::with('orders')->where('id',$id)->first();
        if(isset($bill))
        return view('back-end.bills.bill' , compact('bill'));

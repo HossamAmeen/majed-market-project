@@ -76,10 +76,13 @@
                             <i class="fa fa-pencil-square-o"></i>
                         </a>
 
-                        <a href="#" rel="tooltip" title="طباعة" onclick="printCode( {{$item->code}} , {{$item->selling_price}})"
+                        <!-- <a href="#" rel="tooltip" title="طباعة" onclick="printCode( {{$item->code}} , {{$item->selling_price}})"
                             class="btn btn-xs btn-info">
                             <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$item->id)}}"></i>
-                        </a>
+                        </a> -->
+                        <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
+                        <i class="fa fa-print" data-route="{{url('/admin/print-barcode/'.$item->id)}}"></i>
+                    </a>
                         <button type="submit" rel="tooltip" title="" onclick="check()" class="btn btn-xs btn-danger"><i
                                 class="fa fa-minus"></i></button>
                         @yield('moreButton')
@@ -107,11 +110,22 @@
         });
 </script>
 <script>
+    $.ajaxSetup({
+            headers:{ 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+        });
     function printCode(code , price){
         var myWindow = window.open("", "MsgWindow", "width=400,height=200");
         myWindow.document.write("<h1 style='text-align:center'>"+code+"</h1>");
         myWindow.document.write("<h2 style='text-align:center'>السعر ( "+price+")</h2>");
         // myWindow.print();
     }
+    
+    function printPageWithAjax(){
+
+        var route= $(event.target).attr("data-route");
+        var mywindow = window.open(route, 'PRINT', 'height=600,width=800');
+        mywindow.focus(); // necessary for IE >= 10
+        // mywindow.print();
+}
 </script>
 @endpush
