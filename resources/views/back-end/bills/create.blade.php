@@ -47,7 +47,7 @@
              </form>
              <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-info" type="submit" form="addForm" value="إضافه">    </button>
+                        <button class="btn btn-info" type="submit" form="addForm" value="add"> إضافة </button>
                         <button class="btn btn-info" onclick="printDiv()" type="button" >طباعة</button>
                     </div>
                     {{-- <div class="col-lg-offset-2 col-lg-10">
