@@ -28,7 +28,8 @@
         @php $input = "products[]"; @endphp
         <label class="col-lg-2 control-label"> المنتج</label>
         <div class="col-lg-2">
-            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
+            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}"
+                         onkeypress="return (event.charCode > 47 && event.charCode < 58)" class="form-control"
                 required>
         </div>
     </div>
@@ -48,23 +49,18 @@
         </div>
     </div>
 
-
-
-
-
 <div class="newRow"></div>
 <div id="toggle" style="display: none">
     <div class="form-group">
         @php $input = "products[]"; @endphp
         <label class="col-lg-2 control-label"> المنتج</label>
         <div class="col-lg-2">
-            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
+            <input type="text" onkeypress="return (event.charCode > 47 && event.charCode < 58)" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
                 >
         </div>
     </div>
 
     <div class="form-group">
-
         @php $input = "quantity[]"; @endphp
         <label class="col-lg-2 control-label">كمية</label>
         <div class="col-lg-2">
