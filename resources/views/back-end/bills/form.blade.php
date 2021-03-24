@@ -53,12 +53,14 @@
 
 
 <div class="newRow"></div>
+
+
 <div id="toggle" style="display: none">
     <div class="form-group">
         @php $input = "products[]"; @endphp
         <label class="col-lg-2 control-label"> المنتج</label>
         <div class="col-lg-2">
-            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
+            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="product"
                 >
         </div>
     </div>
@@ -89,7 +91,11 @@
         <input type="button" class="btn btn-info edit" value="زيادة منتج" onclick="showDiv()"></div>
 </div>
 @endif
+@push('js')
+
+@endpush
 <script type="text/javascript">
+      
     function showDiv(){
             // $("#toggle").css("display", "block");
             // $("#toggle").clone().insertAfter("#toggle:last");

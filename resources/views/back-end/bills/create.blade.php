@@ -13,9 +13,8 @@
     @endcomponent
 
         @component('back-end.shared.create')
-       
-            <form id="addForm" method="post" class="form-horizontal ls_form" action="{{ route($routeName.'.store') }}"
-                    >
+       {{-- action="{{ route($routeName.'.store') }}" --}}
+            <form id="addForm" method="post" class="form-horizontal ls_form"  >
                     @if (session()->get('action') )
                     <div class="alert alert-success">
                         <strong>{{session()->get('action')}}</strong>
@@ -101,7 +100,13 @@ mywindow.print();
 
 
 </script>
+<script type="text/javascript">
+   
+
+     
+</script>
 <script>
+    
     $.ajaxSetup({
                     headers:
                     {
@@ -112,8 +117,12 @@ mywindow.print();
 
         $("#addForm").submit(function(e)
         {
+          
+          
+      });
             
             e.preventDefault();
+           
             var formData  = new FormData(jQuery('#addForm')[0]);
             // console.log(formData);
             document.getElementById("successDivMessage").style.display="none";
