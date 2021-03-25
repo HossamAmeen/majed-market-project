@@ -32,6 +32,9 @@
 
 
      @endphp
+      <br>
+     <span style="text-align: left;">الكود {{$product->code}} </span>
+     
       <!-- <img id="barcode" src="./barcode.gif" style="width:120px"> -->
     </div>
     <input type="button" value="اطبع" onclick="printDiv()">
