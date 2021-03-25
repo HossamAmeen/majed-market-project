@@ -14,6 +14,12 @@ class ProductController extends BackEndController
     {
         parent::__construct($model);
     }
+    public function show($id)
+    {
+        
+        return redirect()->route('products.index');
+        
+    }
     public function store(Request $request){
 
         $requestArray = $request->all();
