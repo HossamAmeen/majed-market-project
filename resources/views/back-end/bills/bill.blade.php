@@ -13,6 +13,7 @@
       }
       table {
         width: 100%;
+       
       }
       th {
         text-align: right;
@@ -26,6 +27,7 @@
       table {
         border-top: 1px solid black;
         border-collapse: collapse;
+        font-size: 120%;
       }
       td.description,
       th.description {
