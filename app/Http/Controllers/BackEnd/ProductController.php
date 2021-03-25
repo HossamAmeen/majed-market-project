@@ -5,7 +5,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use DNS1D;
 use Image ,DB;
 
 class ProductController extends BackEndController
@@ -53,6 +53,14 @@ class ProductController extends BackEndController
             $str .= rand(0, 9);
 
         return $str;
+    }
+    public function printBarCode($productId)
+    {
+        
+        $product=Product::find($productId);
+        
+        if(isset($product))
+        return view('back-end.products.printBarCode' , compact('product'));
     }
     public function appendIndex($rows)
     {

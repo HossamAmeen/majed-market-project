@@ -42,19 +42,20 @@
                 @csrf
                 @include('back-end.'.$folderName.'.form')
                   {{-- id  <input id="billID" > --}}
-                <div class="form-group">
+                
+             </form>
+             <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-info" type="submit" >  إضافه  </button>
+                        <button class="btn btn-info" type="submit" form="addForm" value="add"> إضافة </button>
                         <button class="btn btn-info" onclick="printDiv()" type="button" >طباعة</button>
                     </div>
                     {{-- <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-info" type="button" onclick="printPageWithAjax()" >  test  </button>
                     </div> --}}
                 </div>
-             </form>
-            
             <div id="printDivBill" style="display: none">
-               
+      
+
             </div>
         @endcomponent
        

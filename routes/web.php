@@ -23,8 +23,8 @@ Route::prefix('admin')->group(function(){
         Route::resource('bills', 'BillController');
         Route::resource('notes', 'NoteController');
         Route::any('print-bill/{id}', 'BillController@printBill')->name('bills.print');
-
-
+        Route::get('print-barcode/{productId}', 'ProductController@printBarCode')->name('barcode.print');
+        
         // Route::get('/printre', function ()
         // {
 
