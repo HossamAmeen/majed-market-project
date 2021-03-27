@@ -1,64 +1,64 @@
 @extends('back-end.layout.app')
 @php $pageTitle = "إضافه فاتورة " @endphp
 @section('title')
-    {{ $pageTitle }}
+{{ $pageTitle }}
 @endsection
 
 @section('content')
 
-    @component('back-end.layout.header')
-        @slot('nav_title')
-            {{ $pageTitle }}
-        @endslot
-    @endcomponent
+@component('back-end.layout.header')
+@slot('nav_title')
+{{ $pageTitle }}
+@endslot
+@endcomponent
 
-        @component('back-end.shared.create')
-       {{-- action="{{ route($routeName.'.store') }}" --}}
-            <form id="addForm" method="post" class="form-horizontal ls_form"  >
-                    @if (session()->get('action') )
-                    <div class="alert alert-success">
-                        <strong>{{session()->get('action')}}</strong>
-                    </div>
-                    @endif
-                    @error('errorProduct')
-                    <div class="alert alert-danger">
-                        <button type="button" class="close" data-dismiss="alert"
-                            aria-hidden="true">&times;</button>
-                        {{ $message }}
-                    </div>
-                    @enderror
+@component('back-end.shared.create')
+{{-- action="{{ route($routeName.'.store') }}" --}}
+<form id="addForm" method="post" class="form-horizontal ls_form">
+    @if (session()->get('action') )
+    <div class="alert alert-success">
+        <strong>{{session()->get('action')}}</strong>
+    </div>
+    @endif
+    @error('errorProduct')
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{ $message }}
+    </div>
+    @enderror
 
-                    <div id="successDivMessage" class="alert alert-success" style="display: none">
-                        {{-- <button class='close' data-dismiss='alert' aria-hidden='true'>&times;</button> --}}
-                        <strong> تم الاضافه بنجاح </strong>
-                    </div>
+    <div id="successDivMessage" class="alert alert-success" style="display: none">
+        {{-- <button class='close' data-dismiss='alert' aria-hidden='true'>&times;</button> --}}
+        <strong> تم الاضافه بنجاح </strong>
+    </div>
 
-                    <div id="errorDivMessage" class="alert alert-danger" style="display: none">
-                    </div>
+    <div id="errorDivMessage" class="alert alert-danger" style="display: none">
+    </div>
 
-                    <div id="errorBox" class="alert alert-danger" style="display: none">
-                    </div>
+    <div id="errorBox" class="alert alert-danger" style="display: none">
+    </div>
 
-                @csrf
-                @include('back-end.'.$folderName.'.form')
-                  {{-- id  <input id="billID" > --}}
-                
-             </form>
-             <div class="form-group">
-                    <div class="col-lg-offset-2 col-lg-10">
-                        <button class="btn btn-info" type="submit" form="addForm" value="add"> إضافة </button>
-                        <button class="btn btn-info" onclick="printDiv()" type="button" >طباعة</button>
-                    </div>
-                    {{-- <div class="col-lg-offset-2 col-lg-10">
+    @csrf
+    @include('back-end.'.$folderName.'.form')
+    {{-- id  <input id="billID" > --}}
+
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button class="btn btn-info" type="submit" form="addForm" value="add"> إضافة </button>
+            <button class="btn btn-info" onclick="printDiv()" type="button">طباعة</button>
+        </div>
+        {{-- <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-info" type="button" onclick="printPageWithAjax()" >  test  </button>
                     </div> --}}
-                </div>
-            <div id="printDivBill" style="display: none">
-      
+    </div>
+</form>
+<div id="printDivBill" style="display: none">
 
-            </div>
-        @endcomponent
-       
+
+</div>
+@endcomponent
+
 @endsection
 @push('css')
 
@@ -71,16 +71,16 @@
 <script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.printPage.js')}}"></script> --}}
 
-      <!-- Responsive Style For-->
-  <link href="{{asset('panel/assets/css/rtl-css/responsive-rtl.css')}}" rel="stylesheet">
-  <!-- Responsive Style For-->
-  <link rel="stylesheet" href="{{asset('panel/assets/css/rtl-css/plugins/summernote-rtl.css')}}">
-  <!-- Custom styles for this template -->
+<!-- Responsive Style For-->
+<link href="{{asset('panel/assets/css/rtl-css/responsive-rtl.css')}}" rel="stylesheet">
+<!-- Responsive Style For-->
+<link rel="stylesheet" href="{{asset('panel/assets/css/rtl-css/plugins/summernote-rtl.css')}}">
+<!-- Custom styles for this template -->
 
 
-    <!-- Plugin Css Put Here -->
+<!-- Plugin Css Put Here -->
 
-    <link rel="stylesheet" href="{{asset('panel/assets/css/rtl-css/plugins/fileinput-rtl.css')}}">
+<link rel="stylesheet" href="{{asset('panel/assets/css/rtl-css/plugins/fileinput-rtl.css')}}">
 @endpush
 @push('js')
 
@@ -102,12 +102,11 @@ mywindow.print();
 
 </script>
 <script type="text/javascript">
-   
 
-     
+
+
 </script>
 <script>
-    
     $.ajaxSetup({
                     headers:
                     {
@@ -120,7 +119,7 @@ mywindow.print();
         {
           
           
-      });
+    
             
             e.preventDefault();
            
@@ -141,21 +140,17 @@ mywindow.print();
                 {
 
                     console.log("success");
-                    // console.log(dataBack.id)
                     document.getElementById("addForm").reset();
                     document.getElementById("successDivMessage").style.display="block";
                     document.getElementById("printDivBill").style.display="block";
-                    // $('#billID').val(dataBack.id);
+
                     $('#printDivBill').html(dataBack);
                     $('#printDivBill').append(" <button onclick='printDiv()' >طباعة</button>")
                    
-                //    alert('done') 
+               
 
                 }, error: function (xhr, status, error)
                 {
-
-                    // <button type="button" class="close" data-dismiss="alert"
-                    //         aria-hidden="true">&times;</button>
                     console.log("errror " + xhr.responseJSON.error);
                     errorMessageDiv = document.getElementById("errorDivMessage");
                     if(errorMessageDiv !== null)
@@ -164,23 +159,13 @@ mywindow.print();
                     alert( xhr.responseJSON.error)
 
                     document.getElementById("printDivBill").style.display="none";
-                    // console.log('test')
-                    // document.getElementById("errorBox").style.display="block";
                     $("#errorDivMessage").html("<button class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>"
                                         + xhr.responseJSON.error);
-                    // $.each(xhr.responseJSON.errors,function(key,item)
-                    // {
-
-                    //     // $("#error").html("<li class='alert alert-danger text-center p-1'>"+ item +" </li>");
-                    // })
                 }
                
             })
-            // var printWindow = window.open("", 'PRINT', 'height=600,width=800');
-            // printWindow.document.write("test"); 
-            // $("#printDivBill").print();
-            // printWindow.print();
-        })
+        
+        });
 
 
 
@@ -192,13 +177,13 @@ mywindow.print();
             printWindow.document.write("test"); 
     }
 </script> --}}
-     <!--Upload button Script Start-->
-   <script src="{{asset('panel/assets/js/fileinput.min.js')}}"></script>
-   <!--Upload button Script End-->
+<!--Upload button Script Start-->
+<script src="{{asset('panel/assets/js/fileinput.min.js')}}"></script>
+<!--Upload button Script End-->
 
 <!--Auto resize  text area Script Start-->
 <script src="{{asset('panel/assets/js/jquery.autosize.js')}}"></script>
- <!--Auto resize  text area Script Start-->
+<!--Auto resize  text area Script Start-->
 <script src="{{asset('panel/assets/js/pages/sampleForm.js')}}"></script>
 
 
