@@ -19,14 +19,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="csrf-token" content="{!! csrf_token() !!}">
     <!-- iOS webapp icons -->
-    <link rel="apple-touch-icon-precomposed" href="{{asset('panel/assets/images/ios/fickle-logo-72.png')}}" />
+    <link rel="apple-touch-icon-precomposed" href="{{asset('4md.jpg')}}" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72"
         href="{{asset('panel/assets/images/ios/fickle-logo-72.png')}}" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114"
         href="{{asset('panel/assets/images/ios/fickle-logo-114.png')}}" />
 
     <!-- TODO: Add a favicon -->
-    <link rel="shortcut icon" href="{{asset('panel/assets/images/ico/fab.ico')}}">
+    <link rel="shortcut icon" href="{{asset('4md.jpg')}}">
 
     <title> @yield('title')</title>
 

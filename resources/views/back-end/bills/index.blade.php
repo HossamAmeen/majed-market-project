@@ -57,7 +57,7 @@
             <td>{{$totalCost}}</td>
             <td>{{$totalDiscount}}</td>
 
-            <td>{{$item->created_at->format('Y-m-d')}}</td>
+            <td>{{$item->updated_at}}</td>
             <td>{{$item->user->user_name ?? ""}}</td>
             <td width="15%">
                 <form action="{{ route($routeName.'.destroy' , ['id' => $item]) }}" method="post">

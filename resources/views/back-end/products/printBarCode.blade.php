@@ -17,7 +17,7 @@
     </script>
   </head>
   <body style="font-size:12px;text-align:center;">
-  
+    <div id="print-div">
       <span style="
       text-align:center;
       margin-bottom:-10px;
@@ -40,11 +40,12 @@
   
      @endphp
       <br>
-      <div style="width: 100%; ">
+    <div style="width: 100%; ">
      <span style="text-align: right;font-size: 10px !important;">الكود {{$product->code}} </span>
      <span style="text-align: left;font-size: 10px;">السعر {{$product->selling_price}} جنية</span>
     
     </div>
+  </div>
     <input type="button" value="اطبع" onclick="printDiv()">
   </body>
 </html>

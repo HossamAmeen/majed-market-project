@@ -45,7 +45,7 @@
             <th>سعر البيع الكلى</th>
             <th>الكود</th>
             <th>المسؤول</th>
-            {{-- <th>الخصم</th> --}}
+            <th>وقت الاضافه</th>
 
 
             <th></th>
@@ -63,7 +63,7 @@
                 <td>{{$item->selling_price * $item->quantity}}</td>
                 <td>{{$item->code}}</td>
                 <td>{{$item->user->user_name ?? " "}}</td>
-                {{-- <td>{{$item->discount}}</td> --}}
+                <td>{{$item->updated_at}}</td>
                 <td>
 
 
