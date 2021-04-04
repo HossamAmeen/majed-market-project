@@ -39,10 +39,11 @@
         </tr>
     </thead>
     <tbody>
+       
+        @foreach ($rows as $item)
         @php
         $totalCost = 0 ; $totalDiscount = 0 ;
         @endphp
-        @foreach ($rows as $item)
         <tr id="row{{$item->id}}">
             <td> {{$row_num++}}</td>
             <td>{{$item->id}}</td>
