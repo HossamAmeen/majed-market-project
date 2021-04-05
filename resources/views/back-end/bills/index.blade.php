@@ -32,7 +32,7 @@
             <th>منتجات</th>
             <th>فلوس الفاتورة</th>
             <th>خصم الفاتورة</th>
-
+            <th> فلوس الفاتورة بعد الخصم</th>
             <th>تاريخ الصرف</th>
             <th>المسؤول</th>
             <th></th>
@@ -57,7 +57,7 @@
                 @endforeach</td>
             <td>{{$totalCost}}</td>
             <td>{{$totalDiscount}}</td>
-
+            <td>{{$totalCost- $totalDiscount}}</td>
             <td>{{$item->updated_at}}</td>
             <td>{{$item->user->user_name ?? ""}}</td>
             <td width="15%">
