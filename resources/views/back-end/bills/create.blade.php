@@ -46,14 +46,14 @@
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
             <button class="btn btn-info" type="submit" form="addForm" value="add"> إضافة </button>
-            <button class="btn btn-info" onclick="printDiv()" type="button">طباعة</button>
+
         </div>
         {{-- <div class="col-lg-offset-2 col-lg-10">
                         <button class="btn btn-info" type="button" onclick="printPageWithAjax()" >  test  </button>
                     </div> --}}
     </div>
 </form>
-<div id="printDivBill" style="display: none">
+<div id="printDivBill" style="display: none ;   text-align: right;">
 
 
 </div>
@@ -90,11 +90,11 @@
         mywindow.document.write( $('#printDivBill').html());
         mywindow.print();
     }
-    function printPageWithAjax(){
+function printPageWithAjax(id){
 
 // var route= $(event.target).attr("data-route");
-
-var mywindow = window.open("{{url('/admin/print-bill/1')}}", 'PRINT', 'height=600,width=800');
+url = "{{url('/admin/print-bill/')}}" ;
+var mywindow = window.open(url+"/" + id , 'PRINT', 'height=600,width=800');
 mywindow.focus(); // necessary for IE >= 10
 mywindow.print();
 }
@@ -145,7 +145,7 @@ mywindow.print();
                     document.getElementById("printDivBill").style.display="block";
 
                     $('#printDivBill').html(dataBack);
-                    $('#printDivBill').append(" <button onclick='printDiv()' >طباعة</button>")
+                    // $('#printDivBill').append("<br><br> <button onclick='printDiv()' >طباعة</button>")
                    
                
 

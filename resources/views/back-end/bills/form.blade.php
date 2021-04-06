@@ -20,6 +20,16 @@
         </span>
         @enderror
     </div>
+    @php $input = "discount"; @endphp
+    <label class="col-lg-2 control-label">خصم ع الفاتوره</label>
+    <div class="col-lg-2">
+        <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control">
+        @error($input)
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
 </div>
 
 

@@ -58,7 +58,7 @@
                 @endforeach
             </td>
             <td>{{$totalCost}}</td>
-            <td>{{$totalDiscount}}</td>
+            <td>{{$totalDiscount + $item->discount}}</td>
             <td>{{$totalCost- $totalDiscount}}</td>
             <td>{{$item->updated_at}}</td>
             <td>{{$item->user->user_name ?? ""}}</td>

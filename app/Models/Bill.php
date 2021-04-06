@@ -12,7 +12,7 @@ class Bill extends Model
     use SoftDeletes;
     protected $dates=['deleted_at'];
     protected $fillable = [
-        'name' , 'phone','is_selling', 'user_id','product_id'
+        'name' , 'phone','discount','is_selling', 'user_id','product_id'
     ];
 
     public function user()

@@ -18,7 +18,7 @@ class CreateBillsTable extends Migration
             $table->string('name')->nullable();
             $table->string('phone')->nullable();
             $table->boolean('is_selling')->default(0);
-           
+            $table->double('discount')->default(0)->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate("cascade");
            

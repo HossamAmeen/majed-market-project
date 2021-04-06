@@ -126,7 +126,7 @@
             {{$order->price}}
             </td>
             <td class="price-off">
-            {{$order->discount}}
+            {{$order->discount }}
             </td>
           </tr>
           @php
@@ -140,10 +140,11 @@
       <p class="last-price">
         <span class="end-all-price"><b> اجمالى السعر : {{$sum}}</b></span>
         <br>
-        <span class="end-all-price"><b> اجمالى الخصم : {{$discount}}</b></span>
+        <span class="end-all-price"><b> اجمالى الخصم : {{$discount+ $bill->discount}}</b></span>
         <br>
         <span class="end-all-price"><b>المطلوب دفعه : {{$sum-$discount}}</b></span>
       </p>
     </div>
+   
   </body>
 </html>

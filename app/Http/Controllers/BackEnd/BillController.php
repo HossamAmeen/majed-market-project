@@ -73,7 +73,7 @@ class BillController extends BackEndController
         // session()->flash('action', 'تم الاضافه بنجاح');
         // $bill=Bill::where('id',$id)->first();
        
-        return view('back-end.bills.bill' , compact('bill'));
+        return view('back-end.bills.bill2' , compact('bill'));
         return response(['id' => $bill->id], 200);
         return json_encode(['id' => $bill->id]);
         return redirect()->back()->withInput();
