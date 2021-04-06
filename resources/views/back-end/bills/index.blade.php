@@ -29,7 +29,7 @@
             <th> رقم الفاتورة</th>
             <th>اسم المشتري</th>
             <th>رقم الموبايل</th>
-            <th>منتجات</th>
+            <th>اسم المنتج (العدد) - السعر</th>
             <th>فلوس الفاتورة</th>
             <th>خصم الفاتورة</th>
             <th> فلوس الفاتورة بعد الخصم</th>
@@ -44,17 +44,19 @@
         @php
         $totalCost = 0 ; $totalDiscount = 0 ;
         @endphp
-        <tr id="row{{$item->id}}">
+        <tr id="row{{$item->id}}" >
             <td> {{$row_num++}}</td>
             <td>{{$item->id}}</td>
             <td>{{$item->name}}</td>
-            <td>{{$item->phone}}</td>
-            <td>@foreach ($item->orders as $order)
+            <td>{{$item->phone??"--"}}</td>
+            <td>
+                @foreach ($item->orders as $order)
                 {{$order->product_name ?? " "}} ( {{$order->quantity}} ) - {{ $order->price}} جنيها<br>
                 @php
                 $totalCost += ($order->quantity * $order->price); $totalDiscount += $order->discount ;
                 @endphp
-                @endforeach</td>
+                @endforeach
+            </td>
             <td>{{$totalCost}}</td>
             <td>{{$totalDiscount}}</td>
             <td>{{$totalCost- $totalDiscount}}</td>

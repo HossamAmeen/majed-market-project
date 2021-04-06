@@ -91,7 +91,7 @@ class BillController extends BackEndController
            
            
             $order = Order::where('id' ,$request->orders[$i] )->first();
-
+            
             $product = Product::find($order->product_id);
             if(!isset($product)){
                 $requestArray['code'] =  $this->generateRandomNumber(5);
@@ -119,7 +119,11 @@ class BillController extends BackEndController
                 }
                
             }
-            $order->update(['quantity' =>$request->quantity[$i] , 'product_id'=> $product->id]);
+            if($request->quantity[$i] == 0){
+                $order->delete();
+            }
+            else
+                $order->update(['quantity' =>$request->quantity[$i] , 'product_id'=> $product->id]);
         }
 
 

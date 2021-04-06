@@ -63,7 +63,10 @@ class BackEndController extends Controller
             'routeName'
         ))->with($append);
     }
-
+    public function show($id)
+    {
+        return redirect()->route($this->getClassNameFromModel() . '.index');
+    }
     public function destroy($id)
     {
         $this->model->FindOrFail($id)->delete();

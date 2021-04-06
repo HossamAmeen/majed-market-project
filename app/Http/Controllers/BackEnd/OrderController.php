@@ -70,7 +70,12 @@ class OrderController extends BackEndController
                     'code'=> $requestArray['code']
                 ]);
             }
-            $order->delete();      
+            $bill = $order->bill;
+            if(isset($bill->orders) )
+            if($bill->orders->count() == 1)
+                $bill->delete();
+            $order->delete();
+            // return $order;
         return redirect()->route($this->getClassNameFromModel() . '.index');
     }
     public function filter($rows)

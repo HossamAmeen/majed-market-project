@@ -39,7 +39,7 @@
             <th>الخصم</th>
             <th>الكمية</th>
             <th>التاريخ</th>
-            <th> اسم صاحب الفاتورة</th>
+            <th> اسم صاحب الفاتوره ( رقم الفاتوره )</th>
             <th>المسؤول</th>
             <th></th>
         </tr>
@@ -69,9 +69,7 @@
                     @php
                         $billId = $item->bill->id ?? 0;
                     @endphp
-                    <a href="#" rel="tooltip" title="طباعة" onclick="printPageWithAjax()" class="btn btn-xs btn-info">
-                        <i class="fa fa-print" data-route="{{url('/admin/print-bill/'.$billId)}}"></i>
-                    </a>
+                  
                     </form>
             </td>
             @php
