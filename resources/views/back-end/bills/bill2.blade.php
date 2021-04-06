@@ -142,7 +142,7 @@
         <br>
         <span class="end-all-price"><b> اجمالى الخصم : {{$discount+ $bill->discount}}</b></span>
         <br>
-        <span class="end-all-price"><b>المطلوب دفعه : {{$sum-$discount}}</b></span>
+        <span class="end-all-price"><b>المطلوب دفعه : {{$sum-$discount-$bill->discount}}</b></span>
       </p>
       <br><br> <button onclick="printPageWithAjax({{$bill->id}})" >طباعة</button>
     </div>
