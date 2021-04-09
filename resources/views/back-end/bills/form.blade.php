@@ -38,9 +38,10 @@
         @php $input = "products[]"; @endphp
         <label class="col-lg-2 control-label"> المنتج</label>
         <div class="col-lg-2">
-            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}"
-                         onkeypress="return (event.charCode > 47 && event.charCode < 58)" class="form-control"
+            <input type="text" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" id="productId"
+                         onkeypress="return (event.charCode > 47 && event.charCode < 58)" class="form-control" onchange="getProduct(this.value)"
                 required>
+               
         </div>
     </div>
 
@@ -68,7 +69,7 @@
         <label class="col-lg-2 control-label"> المنتج</label>
         <div class="col-lg-2">
             <input type="text" onkeypress="return (event.charCode > 47 && event.charCode < 58)" name="{{ $input }}" value="{{ isset($row) ? $row->{$input} : '' }}" class="form-control"
-                >
+            onchange="getProduct(this.value)">
         </div>
     </div>
 
@@ -93,8 +94,10 @@
 
 @if(!isset($row))
 <div class="form-group">
+    <span class="col-lg-offset-2 col-lg-10" style="color: blue" id="productDetials"></span>
     <div class="col-lg-offset-2 col-lg-10">
-        <input type="button" class="btn btn-info edit" value="زيادة منتج" onclick="showDiv()"></div>
+        <input type="button" class="btn btn-info edit" value="زيادة منتج" onclick="showDiv()">
+    </div>
 </div>
 @endif
 @push('js')
@@ -102,16 +105,9 @@
 @endpush
 <script type="text/javascript">
       
-    function showDiv(){
-            // $("#toggle").css("display", "block");
-            // $("#toggle").clone().insertAfter("#toggle:last");
-            
+    function showDiv(){            
             $(".newRow").append($("#toggle").html())
-            // var mySecondDiv=$('<div id="mySecondDiv"></div>');
-            // $('#myDiv').html(mySecondDiv);
-
-            // var mySecondDiv=$('<div id="mySecondDiv"></div>');
-            // $('#myDiv').append(mySecondDiv);
+            
         }
 
 </script>

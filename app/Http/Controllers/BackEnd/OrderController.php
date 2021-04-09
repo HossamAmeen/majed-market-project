@@ -60,15 +60,10 @@ class OrderController extends BackEndController
             }
             else
             {
-                $requestArray['code'] =  $this->generateRandomNumber(5);
-                while( $this->checkNumber( $requestArray['code'] )  ) {
-                    $requestArray['code'] =  $this->generateRandomNumber(5);
-                }
-            
-                Product::create([
-                    'name'=>$order->product_name,
-                    'code'=> $requestArray['code']
-                ]);
+                $product = Product::withTrashed()->where('id',$order->product_id)->first();
+                $product->quantity = $order->quantity;
+                $product->restore();
+                $product->save();
             }
             $bill = $order->bill;
             if(isset($bill->orders) )

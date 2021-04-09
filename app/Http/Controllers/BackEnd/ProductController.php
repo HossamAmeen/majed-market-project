@@ -14,12 +14,7 @@ class ProductController extends BackEndController
     {
         parent::__construct($model);
     }
-    public function show($id)
-    {
-        
-        return redirect()->route('products.index');
-        
-    }
+  
     public function store(Request $request){
 
         $requestArray = $request->all();
@@ -36,6 +31,23 @@ class ProductController extends BackEndController
         return redirect()->route($this->getClassNameFromModel().'.index');
     }
 
+    public function show($code)
+    {
+        $row =  $this->model->where('code',$code)->get(['name','selling_price','quantity'])->first();
+        if(isset($row)){
+           $message = " ";
+
+        }
+        else
+        {
+            $message = "لا يوجد";
+
+        }
+        return response()->json([
+            'product' => $row,
+            'message' => $message,
+        ]);
+    }
     public function update($id , Request $request){
 
 

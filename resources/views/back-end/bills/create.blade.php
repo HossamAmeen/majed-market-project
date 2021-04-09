@@ -90,6 +90,33 @@
         mywindow.document.write( $('#printDivBill').html());
         mywindow.print();
     }
+    function getProduct(id){
+        console.log(id);
+        $.ajax({
+                url:"{{url('admin/products')}}"+"/"+id,
+                type:"get",
+                contentType: false,
+                processData: false,
+                success:function(dataBack)
+                {
+
+                    console.log("success");
+                    
+                    if( dataBack.product!==null)
+                    $('#productDetials').html("المنتج :" + dataBack.product.name + "-السعر:" + dataBack.product.selling_price + "جنيه - العدد :" + dataBack.product.quantity );
+                    else
+                    $('#productDetials').html("لا يوجد");
+                    // console.log(dataBack.product.name);
+                  
+
+                }, error: function (xhr, status, error)
+                {
+             
+                }
+               
+            })
+        console.log("test");
+    }
 function printPageWithAjax(id){
 
 // var route= $(event.target).attr("data-route");
