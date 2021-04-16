@@ -19,6 +19,7 @@ Route::prefix('admin')->group(function(){
         Route::resource('users', 'UserController');
         Route::any('edit-account', 'UserController@editAccount')->name('edit-account');
         Route::resource('products', 'ProductController');
+        Route::get('products-export-excel-sheet', 'ProductController@excelExportSheet');
         Route::resource('orders', 'OrderController');
         Route::resource('bills', 'BillController');
         Route::resource('notes', 'NoteController');

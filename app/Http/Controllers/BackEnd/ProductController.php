@@ -5,6 +5,8 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Exports\ProductsExport;
+use Maatwebsite\Excel\Facades\Excel;
 use DNS1D;
 use Image ,DB;
 
@@ -103,5 +105,11 @@ class ProductController extends BackEndController
         if(request('quantity'))
         $rows = $rows->where('quantity' ,'<', request('quantity'));
         return  $rows;
+    }
+
+    public function excelExportSheet()
+    {
+        
+        return Excel::download(new ProductsExport, 'products.xlsx');
     }
 }
