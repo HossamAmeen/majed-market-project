@@ -9,7 +9,7 @@ use App\Exports\ProductsExport;
 use Maatwebsite\Excel\Facades\Excel;
 use DNS1D;
 use Image ,DB;
-
+use PDF;
 class ProductController extends BackEndController
 {
     public function __construct(Product $model)
@@ -111,5 +111,22 @@ class ProductController extends BackEndController
     {
         
         return Excel::download(new ProductsExport, 'products.xlsx');
+    }
+    public function exportPDF()
+    {
+       
+        $rows = $this->model;
+        $rows = $rows->orderBy('id', 'DESC')->get();
+        $data = [
+			'rows' => $rows
+		];
+
+		$pdf = PDF::loadView('back-end.products.pdf', $data);
+        // return PDF::loadView('print', $data)->download('print.pdf');
+        // return view('back-end.products.pdf' , $data );
+		// return $pdf->stream('back-end.products.pdf');
+        // $pdf->Output("test", 'D');
+        // $pdf->Output('yourFileName.pdf', 'I');
+        return $pdf->download('منتجات');
     }
 }

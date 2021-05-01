@@ -12,7 +12,8 @@
 <button class="btn  btn-info">اجمالي سعر الشراء : {{$totalBuyCost}}</button>
 <button class="btn  btn-info">اجمالي سعر البيع : {{$totalSellCost}} </button>
 <button class="btn  btn-success">صافي مكسب: {{$totalSellCost - $totalBuyCost}}</button>
-<a href="{{url('admin/products-export-excel-sheet')}}" class="btn  btn-success">export to excel sheet</a>
+<a href="{{url('admin/products-export-excel-sheet')}}" class="btn  btn-success">Export to excel sheet</a>
+<a href="{{url('admin/products-export-PDF')}}" class="btn  btn-success">Export to PDF file</a>
 {{-- <p style="float: right">عدد القطع :  {{$productsCount}}</p>
 <p style="margin: 0% 20% ; float: right">اجمالي سعر الشراء : {{$totalBuyCost}}</p>
 <p style="margin: 0% 20%">اجمالي سعر البيع : {{$totalSellCost}}</p>
