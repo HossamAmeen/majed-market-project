@@ -22,12 +22,11 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+   
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+       $schedule->command('db:backup')->twiceDaily(0,12);
     }
-
     /**
      * Register the commands for the application.
      *
