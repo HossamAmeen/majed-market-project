@@ -42,7 +42,8 @@ class ConfigrationController extends BackEndController
     {
         
          Artisan::call('db:backup');
-          dd(Artisan::output());
+     
+         dd(Artisan::output());
     }
     public function sendToken(Request $request)
     {
