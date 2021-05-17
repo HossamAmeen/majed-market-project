@@ -11,6 +11,7 @@ use App\Models\{Order,Product};
 use Illuminate\Support\Facades\Response;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
 class ConfigrationController extends BackEndController
 {
     public function __construct(Configration $model)
@@ -37,6 +38,12 @@ class ConfigrationController extends BackEndController
         return back()->withInput();
     }
 
+    public function test()
+    {
+        
+         Artisan::call('db:backup');
+          dd(Artisan::output());
+    }
     public function sendToken(Request $request)
     {
 

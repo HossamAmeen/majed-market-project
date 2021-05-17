@@ -26,7 +26,7 @@ Route::prefix('admin')->group(function(){
         Route::resource('notes', 'NoteController');
         Route::any('print-bill/{id}', 'BillController@printBill')->name('bills.print');
         Route::get('print-barcode/{productId}', 'ProductController@printBarCode')->name('barcode.print');
-        
+        Route::get('test' ,'ConfigrationController@test' );
         // Route::get('/printre', function ()
         // {
 
